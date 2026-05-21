@@ -711,27 +711,6 @@ if (bookingForm) {
   });
 }
 
-// ===== Parallax background on artist-row sections =====
-if (!prefersReducedMotion) {
-  const rows = $$('.artist-row');
-  if (rows.length > 0) {
-    const updateParallax = () => {
-      const vh = window.innerHeight;
-      rows.forEach(row => {
-        const r = row.getBoundingClientRect();
-        if (r.bottom < -200 || r.top > vh + 200) return;
-        const center = r.top + r.height / 2;
-        const ratio = (center - vh / 2) / vh;
-        const offset = ratio * -40; // px, negative so bg moves opposite to scroll
-        row.style.backgroundPosition = `center calc(50% + ${offset}px)`;
-      });
-    };
-    window.addEventListener('scroll', () => requestAnimationFrame(updateParallax), { passive: true });
-    window.addEventListener('resize', updateParallax);
-    updateParallax();
-  }
-}
-
 // ===== Directional reveal on artist-row content =====
 if ('IntersectionObserver' in window) {
   const rowParts = $$('.artist-row .artist-row__main, .artist-row .works');
