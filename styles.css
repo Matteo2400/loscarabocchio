@@ -387,20 +387,20 @@ h1, h2, h3 {
 }
 
 .nav__logo-img {
-  height: 32px;
+  height: 40px;
   width: auto;
   display: block;
 }
 
 .nav__logo-text {
-  height: 24px;
+  height: 30px;
   width: auto;
   display: block;
 }
 
 @media (max-width: 600px) {
-  .nav__logo-img { height: 26px; }
-  .nav__logo-text { height: 20px; }
+  .nav__logo-img { height: 32px; }
+  .nav__logo-text { height: 24px; }
 }
 
 .nav__links {
