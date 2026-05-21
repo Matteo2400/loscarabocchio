@@ -383,21 +383,24 @@ h1, h2, h3 {
 .nav__logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
-  font-family: 'The Coastal', 'Caveat', 'Brush Script MT', cursive;
-  font-size: 1.7rem;
-  font-weight: 400;
-  letter-spacing: 0;
-  line-height: 1;
-  color: var(--ink);
+  gap: 0.7rem;
 }
-
-.nav__logo span { display: inline-block; }
 
 .nav__logo-img {
   height: 42px;
   width: auto;
   display: block;
+}
+
+.nav__logo-text {
+  height: 36px;
+  width: auto;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .nav__logo-img { height: 34px; }
+  .nav__logo-text { height: 28px; }
 }
 
 .nav__links {
