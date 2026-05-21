@@ -2782,26 +2782,38 @@ img.img--lighten {
   isolation: isolate;
 }
 
-/* Ambient background tint per artist mood */
+/* Each section uses one of the artist's works as bg, darkened so content stays in focus */
+.artist-row {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .artist-row[data-mood="botanical"] {
-  background:
-    radial-gradient(70% 90% at 8% 50%, rgba(120, 180, 130, 0.07), transparent 60%),
-    radial-gradient(50% 70% at 100% 100%, rgba(0, 0, 0, 0.18), transparent 70%);
+  background-image:
+    linear-gradient(180deg, rgba(18, 32, 38, 0.82) 0%, rgba(12, 22, 28, 0.94) 100%),
+    url('https://picsum.photos/seed/francesca-w1/1800/1200');
 }
 .artist-row[data-mood="realistic"] {
-  background:
-    radial-gradient(70% 90% at 92% 50%, rgba(180, 200, 220, 0.06), transparent 60%),
-    radial-gradient(50% 70% at 0% 0%, rgba(0, 0, 0, 0.22), transparent 70%);
+  background-image:
+    linear-gradient(180deg, rgba(15, 22, 28, 0.86) 0%, rgba(8, 14, 20, 0.96) 100%),
+    url('https://picsum.photos/seed/michela-w2/1800/1200');
 }
 .artist-row[data-mood="traditional"] {
-  background:
-    radial-gradient(70% 90% at 8% 50%, rgba(227, 178, 31, 0.08), transparent 60%),
-    radial-gradient(50% 70% at 100% 0%, rgba(0, 0, 0, 0.18), transparent 70%);
+  background-image:
+    linear-gradient(180deg, rgba(30, 22, 12, 0.84) 0%, rgba(20, 16, 10, 0.94) 100%),
+    url('https://picsum.photos/seed/giorgio-w1/1800/1200');
 }
 .artist-row[data-mood="color"] {
-  background:
-    radial-gradient(70% 90% at 92% 50%, rgba(220, 130, 180, 0.07), transparent 60%),
-    radial-gradient(60% 80% at 0% 100%, rgba(227, 178, 31, 0.05), transparent 70%);
+  background-image:
+    linear-gradient(180deg, rgba(25, 18, 32, 0.84) 0%, rgba(18, 12, 26, 0.94) 100%),
+    url('https://picsum.photos/seed/micky-w4/1800/1200');
+}
+
+/* Vignette overlay to push focus to center */
+.artist-row > .container {
+  position: relative;
+  z-index: 1;
 }
 
 /* Giant initial letter watermark — bleeds into background opposite the photo */
