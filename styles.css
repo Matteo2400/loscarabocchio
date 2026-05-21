@@ -2820,22 +2820,12 @@ img.img--lighten {
   padding-bottom: 0.25rem;
 }
 
-.artist-row__name::before {
-  content: '';
-  display: block;
-  width: 48px;
-  height: 1px;
-  background: var(--ink-soft);
-  margin-bottom: 1.5rem;
-  opacity: 0.7;
-}
-
 .artist-row__name::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
+  width: 140px;
   height: 2px;
   background: linear-gradient(to right, var(--ink) 0%, var(--ink-soft) 60%, transparent 100%);
   transform-origin: left;
@@ -2846,8 +2836,9 @@ img.img--lighten {
 .artist-row__main.is-visible .artist-row__name::after { transform: scaleX(1); }
 
 .artist-row--reverse .artist-row__name { display: block; text-align: right; }
-.artist-row--reverse .artist-row__name::before { margin-left: auto; }
 .artist-row--reverse .artist-row__name::after {
+  left: auto;
+  right: 0;
   background: linear-gradient(to left, var(--ink) 0%, var(--ink-soft) 60%, transparent 100%);
   transform-origin: right;
 }
