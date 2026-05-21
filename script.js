@@ -747,6 +747,117 @@ if (bookingForm) {
   });
 }
 
+// ===== Parallax background on artist-row sections =====
+if (!prefersReducedMotion) {
+  const rows = $$('.artist-row');
+  if (rows.length > 0) {
+    const updateParallax = () => {
+      const vh = window.innerHeight;
+      rows.forEach(row => {
+        const r = row.getBoundingClientRect();
+        if (r.bottom < -200 || r.top > vh + 200) return;
+        const center = r.top + r.height / 2;
+        const ratio = (center - vh / 2) / vh;
+        const offset = ratio * -40; // px, negative so bg moves opposite to scroll
+        row.style.backgroundPosition = `center calc(50% + ${offset}px)`;
+      });
+    };
+    window.addEventListener('scroll', () => requestAnimationFrame(updateParallax), { passive: true });
+    window.addEventListener('resize', updateParallax);
+    updateParallax();
+  }
+}
+
+// ===== Scroll-velocity tilt on artist-row media (subtle film-like sway) =====
+if (!prefersReducedMotion) {
+  const medias = $$('.artist-row__media');
+  if (medias.length > 0) {
+    let lastY = window.scrollY;
+    let velocity = 0;
+    let raf;
+
+    const decay = () => {
+      velocity *= 0.9;
+      medias.forEach(m => {
+        if (m.matches(':hover')) return;
+        const skew = Math.max(-2.5, Math.min(2.5, velocity * 0.05));
+        m.style.transform = `translateY(0) skewY(${skew}deg)`;
+      });
+      if (Math.abs(velocity) > 0.1) raf = requestAnimationFrame(decay);
+      else {
+        medias.forEach(m => { if (!m.matches(':hover')) m.style.transform = ''; });
+      }
+    };
+
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      velocity = (y - lastY);
+      lastY = y;
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(decay);
+    }, { passive: true });
+  }
+}
+
+// ===== Directional reveal on artist-row content =====
+if ('IntersectionObserver' in window) {
+  const rowParts = $$('.artist-row .artist-row__main, .artist-row .works');
+  if (rowParts.length > 0) {
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          obs.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    rowParts.forEach(el => obs.observe(el));
+  }
+}
+
+// ===== Floating section indicator (right-side dots) =====
+(() => {
+  const sections = [
+    { id: 'opere', label: 'Artisti' },
+    { id: 'galleria', label: 'Galleria' },
+    { id: 'processo', label: 'Processo' },
+    { id: 'faq', label: 'FAQ' },
+    { id: 'contatti', label: 'Contatti' },
+  ].filter(s => document.getElementById(s.id));
+
+  if (sections.length < 2) return;
+
+  const indicator = document.createElement('div');
+  indicator.className = 'section-indicator';
+  indicator.setAttribute('aria-hidden', 'true');
+  sections.forEach(s => {
+    const dot = document.createElement('a');
+    dot.className = 'section-indicator__dot';
+    dot.href = `#${s.id}`;
+    dot.dataset.label = s.label;
+    dot.dataset.target = s.id;
+    indicator.appendChild(dot);
+  });
+  document.body.appendChild(indicator);
+
+  const dots = [...indicator.children];
+
+  const updateActive = () => {
+    const y = window.scrollY + window.innerHeight * 0.4;
+    let activeIdx = -1;
+    sections.forEach((s, i) => {
+      const el = document.getElementById(s.id);
+      if (el && el.offsetTop <= y) activeIdx = i;
+    });
+    dots.forEach((d, i) => d.classList.toggle('is-active', i === activeIdx));
+    indicator.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.5);
+  };
+
+  window.addEventListener('scroll', () => requestAnimationFrame(updateActive), { passive: true });
+  window.addEventListener('resize', updateActive);
+  updateActive();
+})();
+
 // ===== Language switch (basic IT/EN) =====
 const langSwitch = $('.lang-switch');
 if (langSwitch) {
