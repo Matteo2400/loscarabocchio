@@ -4420,7 +4420,6 @@ body { animation: pageIn 0.5s var(--ease); }
   .hero__big-rotate-item { animation: none !important; opacity: 1 !important; position: static !important; display: none !important; }
   .hero__big-rotate-item:first-child { display: inline !important; }
   .hero__aurora-blob, .hero__scroll-cue-line::after { animation: none !important; }
-  .section-indicator { display: none !important; }
 }
 
 /* ============== EXTRA EFFECTS & ANIMATIONS ============== */
@@ -4537,68 +4536,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 .artist-row .works.is-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* Floating section indicator (top-right, fixed) */
-.section-indicator {
-  position: fixed;
-  top: 50%;
-  right: 1.5rem;
-  transform: translateY(-50%);
-  z-index: 50;
-  display: flex;
-  flex-direction: column;
-  gap: 0.7rem;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s var(--ease);
-}
-.section-indicator.is-visible { opacity: 1; }
-.section-indicator__dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: rgba(246, 243, 236, 0.25);
-  transition: all 0.4s var(--ease);
-  position: relative;
-  pointer-events: auto;
-  cursor: pointer;
-}
-.section-indicator__dot::before {
-  content: attr(data-label);
-  position: absolute;
-  right: 16px;
-  top: 50%;
-  transform: translate(8px, -50%);
-  font-family: var(--font);
-  font-size: 0.65rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  opacity: 0;
-  white-space: nowrap;
-  transition: opacity 0.3s var(--ease), transform 0.3s var(--ease);
-  pointer-events: none;
-}
-.section-indicator__dot:hover {
-  background: var(--accent);
-  transform: scale(1.5);
-}
-.section-indicator__dot:hover::before {
-  opacity: 1;
-  transform: translate(0, -50%);
-}
-.section-indicator__dot.is-active {
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(227, 178, 31, 0.15);
-}
-.section-indicator__dot.is-active::before {
-  opacity: 0.8;
-  transform: translate(0, -50%);
-}
-
-@media (max-width: 900px) {
-  .section-indicator { display: none; }
 }
 
 /* Subtle scroll-velocity tilt on artist-row__media (data attribute driven by JS) */

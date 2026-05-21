@@ -779,49 +779,6 @@ if ('IntersectionObserver' in window) {
   }
 }
 
-// ===== Floating section indicator (right-side dots) =====
-(() => {
-  const sections = [
-    { id: 'opere', label: 'Artisti' },
-    { id: 'galleria', label: 'Galleria' },
-    { id: 'processo', label: 'Processo' },
-    { id: 'faq', label: 'FAQ' },
-    { id: 'contatti', label: 'Contatti' },
-  ].filter(s => document.getElementById(s.id));
-
-  if (sections.length < 2) return;
-
-  const indicator = document.createElement('div');
-  indicator.className = 'section-indicator';
-  indicator.setAttribute('aria-hidden', 'true');
-  sections.forEach(s => {
-    const dot = document.createElement('a');
-    dot.className = 'section-indicator__dot';
-    dot.href = `#${s.id}`;
-    dot.dataset.label = s.label;
-    dot.dataset.target = s.id;
-    indicator.appendChild(dot);
-  });
-  document.body.appendChild(indicator);
-
-  const dots = [...indicator.children];
-
-  const updateActive = () => {
-    const y = window.scrollY + window.innerHeight * 0.4;
-    let activeIdx = -1;
-    sections.forEach((s, i) => {
-      const el = document.getElementById(s.id);
-      if (el && el.offsetTop <= y) activeIdx = i;
-    });
-    dots.forEach((d, i) => d.classList.toggle('is-active', i === activeIdx));
-    indicator.classList.toggle('is-visible', window.scrollY > window.innerHeight * 0.5);
-  };
-
-  window.addEventListener('scroll', () => requestAnimationFrame(updateActive), { passive: true });
-  window.addEventListener('resize', updateActive);
-  updateActive();
-})();
-
 // ===== Language switch (basic IT/EN) =====
 const langSwitch = $('.lang-switch');
 if (langSwitch) {
