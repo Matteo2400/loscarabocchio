@@ -27,62 +27,26 @@ if (scrollProgress) {
   updateProgress();
 }
 
-// ===== Custom cursor (desktop only) =====
+// ===== Custom cursor (minimal dot, desktop only) =====
 const cursorDot = $('#cursorDot');
-const cursorRing = $('#cursorRing');
 const isDesktop = window.matchMedia('(pointer: fine) and (min-width: 901px)').matches;
 
-if (cursorDot && cursorRing && isDesktop && !prefersReducedMotion) {
-  let mx = window.innerWidth / 2;
-  let my = window.innerHeight / 2;
-  let rx = mx, ry = my;
-  let isVisible = false;
-
+if (cursorDot && isDesktop && !prefersReducedMotion) {
   document.addEventListener('mousemove', (e) => {
-    mx = e.clientX;
-    my = e.clientY;
-    cursorDot.style.left = mx + 'px';
-    cursorDot.style.top = my + 'px';
-    if (!isVisible) {
-      cursorDot.style.opacity = 1;
-      cursorRing.style.opacity = 1;
-      isVisible = true;
-    }
+    cursorDot.style.left = e.clientX + 'px';
+    cursorDot.style.top = e.clientY + 'px';
+    cursorDot.style.opacity = 1;
   });
 
   document.addEventListener('mouseleave', () => {
     cursorDot.style.opacity = 0;
-    cursorRing.style.opacity = 0;
-    isVisible = false;
   });
 
-  const animateRing = () => {
-    rx += (mx - rx) * 0.18;
-    ry += (my - ry) * 0.18;
-    cursorRing.style.left = rx + 'px';
-    cursorRing.style.top = ry + 'px';
-    requestAnimationFrame(animateRing);
-  };
-  animateRing();
-
-  // Hover state on interactive elements
-  const interactives = 'a, button, .work, .archive__item, .artist-card, .value, .review, .filter, summary, .steps li, .lightbox__close, .lightbox__nav, .works__nav, .archive__nav, .filmstrip__gate, .hero-card';
-  const textInputs = 'input, textarea, select, [contenteditable]';
-
+  // Subtle grow on interactive elements
+  const interactives = 'a, button, .work, .archive__item, .artist-card, summary, .lightbox__close, .lightbox__nav, .works__nav, .archive__nav, .filmstrip__gate, .hero-card';
   document.querySelectorAll(interactives).forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursorRing.classList.add('is-hover');
-      cursorDot.classList.add('is-hover');
-    });
-    el.addEventListener('mouseleave', () => {
-      cursorRing.classList.remove('is-hover');
-      cursorDot.classList.remove('is-hover');
-    });
-  });
-
-  document.querySelectorAll(textInputs).forEach(el => {
-    el.addEventListener('mouseenter', () => cursorRing.classList.add('is-hover-text'));
-    el.addEventListener('mouseleave', () => cursorRing.classList.remove('is-hover-text'));
+    el.addEventListener('mouseenter', () => cursorDot.classList.add('is-hover'));
+    el.addEventListener('mouseleave', () => cursorDot.classList.remove('is-hover'));
   });
 }
 

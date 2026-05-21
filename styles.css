@@ -109,62 +109,34 @@ h1, h2, h3, h4, .hero__title, .display, .artist-row__name, .artist-page__name { 
 .work:focus-visible,
 .archive__item:focus-visible { box-shadow: var(--focus-ring); }
 
-/* ============== CUSTOM CURSOR ============== */
+/* ============== CUSTOM CURSOR (minimal dot, only on desktop) ============== */
 
-.cursor-dot,
-.cursor-ring {
+.cursor-dot {
   position: fixed;
   pointer-events: none;
   z-index: 9999;
   transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
+  background: var(--accent);
   mix-blend-mode: difference;
   display: none;
+  opacity: 0;
+  transition: width 0.25s var(--ease), height 0.25s var(--ease), opacity 0.25s var(--ease);
 }
 
 @media (pointer: fine) and (min-width: 901px) {
-  .cursor-dot, .cursor-ring { display: block; }
-  body { cursor: none; }
-  body * { cursor: none !important; }
-}
-
-.cursor-dot {
-  width: 6px;
-  height: 6px;
-  background: #ffffff;
-  transition: width 0.2s var(--ease), height 0.2s var(--ease), background 0.3s;
-}
-
-.cursor-ring {
-  width: 36px;
-  height: 36px;
-  border: 1.5px solid #ffffff;
-  transition: width 0.35s var(--ease), height 0.35s var(--ease),
-              border-width 0.35s var(--ease), background 0.35s var(--ease);
-}
-
-.cursor-ring.is-hover {
-  width: 64px;
-  height: 64px;
-  border-width: 0;
-  background: rgba(255, 255, 255, 0.18);
-}
-
-.cursor-ring.is-hover-text {
-  width: 14px;
-  height: 14px;
-  background: #ffffff;
-  border-width: 0;
+  .cursor-dot { display: block; }
 }
 
 .cursor-dot.is-hover {
-  width: 0;
-  height: 0;
+  width: 18px;
+  height: 18px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cursor-dot, .cursor-ring { display: none !important; }
-  body, body * { cursor: auto !important; }
+  .cursor-dot { display: none !important; }
 }
 
 /* Scroll progress bar (top of page) */
