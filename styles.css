@@ -401,10 +401,26 @@ h1, h2, h3 {
   font-size: 0.85rem;
   font-weight: 500;
   color: var(--ink-2);
-  transition: color 0.2s;
+  position: relative;
+  padding-bottom: 4px;
+  transition: color 0.25s var(--ease);
+}
+
+.nav__links a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 0.4s var(--ease);
 }
 
 .nav__links a:hover { color: var(--ink); }
+.nav__links a:hover::after { transform: scaleX(1); }
 
 .nav__cta {
   font-size: 0.78rem;
@@ -2614,7 +2630,10 @@ h1, h2, h3 {
   line-height: 1.65;
 }
 
-.footer__cols a:hover { text-decoration: underline; text-underline-offset: 3px; }
+.footer__cols a {
+  transition: color 0.25s var(--ease);
+}
+.footer__cols a:hover { color: var(--accent-soft); }
 
 .footer__copy {
   padding-top: 2rem;
@@ -4065,7 +4084,7 @@ body { animation: pageIn 0.5s var(--ease); }
   bottom: 0;
   width: 0;
   height: 1px;
-  background: var(--ink);
+  background: var(--accent);
   transition: width 0.45s var(--ease);
 }
 
@@ -4076,10 +4095,12 @@ body { animation: pageIn 0.5s var(--ease); }
 }
 
 .contatti__list a:hover,
-.footer__cols a:hover,
 .faq__answer a:hover {
   text-decoration: none;
+  color: var(--accent-soft);
+  transition: color 0.25s var(--ease);
 }
+.footer__cols a:hover { text-decoration: none; }
 
 /* ============== FAQ SMOOTH REVEAL ============== */
 
