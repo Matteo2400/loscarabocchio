@@ -20,6 +20,7 @@
   --bg: #2C5260;           /* visibly matches pantone R51 G93 B105 once rendered */
   --bg-2: #244752;         /* slightly darker for sections */
   --bg-3: #366170;         /* slightly lifted */
+  --bg-deep: #1B3741;      /* deeper teal for trust/info sections */
   --ink: #f5efde;          /* warm cream off-white */
   --ink-2: #d6ceb8;        /* AA pass on teal */
   --ink-soft: #a8a290;     /* AA pass */
@@ -2279,7 +2280,17 @@ h1, h2, h3 {
 
 /* ============== CONTATTI ============== */
 
-.contatti { padding: 7rem 0; }
+.contatti {
+  padding: 7rem 0;
+  background: var(--bg-deep);
+  position: relative;
+}
+.contatti::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(246,243,236,0.08), transparent);
+}
 
 .contatti__grid {
   display: grid;
@@ -3421,7 +3432,17 @@ img.img--lighten {
 
 /* ============== PREZZI ============== */
 
-.prezzi { padding: 7rem 0 4rem; position: relative; }
+.prezzi {
+  padding: 7rem 0 4rem;
+  position: relative;
+  background: var(--bg-deep);
+}
+.prezzi::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(246,243,236,0.08), transparent);
+}
 
 .prezzi .section-head { margin: 0 auto 4rem; max-width: 720px; text-align: center; }
 .prezzi .section-head .eyebrow { justify-content: center; }
@@ -3707,7 +3728,17 @@ img.img--lighten {
 
 /* ============== FAQ ============== */
 
-.faq { padding: 7rem 0; }
+.faq {
+  padding: 7rem 0;
+  background: var(--bg-deep);
+  position: relative;
+}
+.faq::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(246,243,236,0.08), transparent);
+}
 
 .faq__list {
   display: flex;
