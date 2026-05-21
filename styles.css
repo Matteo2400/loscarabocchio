@@ -3267,10 +3267,58 @@ img.img--lighten {
 
 .reviews { padding: 7rem 0; }
 
+.reviews .section-head {
+  margin: 0 auto 3.5rem;
+  max-width: 720px;
+  text-align: center;
+}
+.reviews .section-head .eyebrow { justify-content: center; }
+.reviews .section-head .eyebrow::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--ink-soft);
+  display: inline-block;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.reviews__rating {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  margin-top: 1.5rem;
+  padding: 0.55rem 1.1rem;
+  background: var(--glass);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid rgba(227, 178, 31, 0.25);
+  border-radius: 999px;
+}
+.reviews__rating-stars {
+  color: var(--accent);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+.reviews__rating-score {
+  font-family: var(--font);
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.reviews__rating-meta {
+  font-size: 0.78rem;
+  color: var(--ink-2);
+}
+
 .reviews__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .review {
@@ -3292,10 +3340,11 @@ img.img--lighten {
 }
 
 .review__stars {
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  color: var(--ink);
+  font-size: 1rem;
+  letter-spacing: 0.1em;
+  color: var(--accent);
   margin-bottom: 1.25rem;
+  display: inline-block;
 }
 
 .review__text {
@@ -3351,7 +3400,7 @@ img.img--lighten {
 
 .reviews__cta {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
 
 /* ============== PREZZI ============== */
