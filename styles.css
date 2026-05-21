@@ -2688,8 +2688,57 @@ img.img--lighten {
 .opere .section-head { margin-bottom: 4rem; }
 
 .artist-row {
-  padding: 4.5rem 0;
+  padding: 6rem 0 5rem;
   position: relative;
+  isolation: isolate;
+}
+
+/* Ambient background tint per artist mood */
+.artist-row[data-mood="botanical"] {
+  background:
+    radial-gradient(70% 90% at 8% 50%, rgba(120, 180, 130, 0.07), transparent 60%),
+    radial-gradient(50% 70% at 100% 100%, rgba(0, 0, 0, 0.18), transparent 70%);
+}
+.artist-row[data-mood="realistic"] {
+  background:
+    radial-gradient(70% 90% at 92% 50%, rgba(180, 200, 220, 0.06), transparent 60%),
+    radial-gradient(50% 70% at 0% 0%, rgba(0, 0, 0, 0.22), transparent 70%);
+}
+.artist-row[data-mood="traditional"] {
+  background:
+    radial-gradient(70% 90% at 8% 50%, rgba(227, 178, 31, 0.08), transparent 60%),
+    radial-gradient(50% 70% at 100% 0%, rgba(0, 0, 0, 0.18), transparent 70%);
+}
+.artist-row[data-mood="color"] {
+  background:
+    radial-gradient(70% 90% at 92% 50%, rgba(220, 130, 180, 0.07), transparent 60%),
+    radial-gradient(60% 80% at 0% 100%, rgba(227, 178, 31, 0.05), transparent 70%);
+}
+
+/* Giant initial letter watermark — bleeds into background opposite the photo */
+.artist-row::before {
+  content: attr(data-initial);
+  position: absolute;
+  top: 50%;
+  font-family: var(--font);
+  font-style: italic;
+  font-weight: 900;
+  font-size: clamp(20rem, 44vw, 38rem);
+  line-height: 0.78;
+  letter-spacing: -0.08em;
+  color: rgba(246, 243, 236, 0.045);
+  pointer-events: none;
+  user-select: none;
+  z-index: -1;
+  transform: translateY(-50%);
+  white-space: nowrap;
+}
+
+.artist-row:not(.artist-row--reverse)::before {
+  right: -3vw;
+}
+.artist-row--reverse::before {
+  left: -3vw;
 }
 
 .artist-row:not(:last-child)::after {
