@@ -2791,55 +2791,29 @@ img.img--lighten {
 
 .artist-row[data-mood="botanical"] {
   background-image:
-    linear-gradient(180deg, rgba(18, 32, 38, 0.82) 0%, rgba(12, 22, 28, 0.94) 100%),
-    url('https://picsum.photos/seed/francesca-w1/1800/1200');
+    linear-gradient(180deg, rgba(18, 32, 38, 0.86) 0%, rgba(12, 22, 28, 0.95) 100%),
+    url('images/francesca.jpg');
 }
 .artist-row[data-mood="realistic"] {
   background-image:
-    linear-gradient(180deg, rgba(15, 22, 28, 0.86) 0%, rgba(8, 14, 20, 0.96) 100%),
-    url('https://picsum.photos/seed/michela-w2/1800/1200');
+    linear-gradient(180deg, rgba(15, 22, 28, 0.88) 0%, rgba(8, 14, 20, 0.96) 100%),
+    url('images/michela.jpg');
 }
 .artist-row[data-mood="traditional"] {
   background-image:
-    linear-gradient(180deg, rgba(30, 22, 12, 0.84) 0%, rgba(20, 16, 10, 0.94) 100%),
-    url('https://picsum.photos/seed/giorgio-w1/1800/1200');
+    linear-gradient(180deg, rgba(30, 22, 12, 0.86) 0%, rgba(20, 16, 10, 0.95) 100%),
+    url('images/giorgio.jpg');
 }
 .artist-row[data-mood="color"] {
   background-image:
-    linear-gradient(180deg, rgba(25, 18, 32, 0.84) 0%, rgba(18, 12, 26, 0.94) 100%),
-    url('https://picsum.photos/seed/micky-w4/1800/1200');
+    linear-gradient(180deg, rgba(25, 18, 32, 0.86) 0%, rgba(18, 12, 26, 0.95) 100%),
+    url('images/micky.jpg');
 }
 
 /* Vignette overlay to push focus to center */
 .artist-row > .container {
   position: relative;
   z-index: 1;
-}
-
-/* Giant initial letter watermark — bleeds into background opposite the photo */
-.artist-row::before {
-  content: attr(data-initial);
-  position: absolute;
-  top: 50%;
-  font-family: var(--font);
-  font-style: italic;
-  font-weight: 900;
-  font-size: clamp(20rem, 44vw, 38rem);
-  line-height: 0.78;
-  letter-spacing: -0.08em;
-  color: rgba(246, 243, 236, 0.045);
-  pointer-events: none;
-  user-select: none;
-  z-index: -1;
-  transform: translateY(-50%);
-  white-space: nowrap;
-}
-
-.artist-row:not(.artist-row--reverse)::before {
-  right: -3vw;
-}
-.artist-row--reverse::before {
-  left: -3vw;
 }
 
 .artist-row:not(:last-child)::after {
