@@ -3565,24 +3565,55 @@ img.img--lighten {
   .prezzi__grid { grid-template-columns: 1fr; }
 }
 
-/* ============== STUDIO (igiene & ambienti) ============== */
+/* ============== STUDIO (igiene & ambienti) — sezione invertita su cream ============== */
 
-.studio { padding: 7rem 0 5rem; position: relative; }
+.studio {
+  padding: 8rem 0 6rem;
+  position: relative;
+  background: var(--ink);
+  color: var(--bg-deep);
+}
+
+/* Stacchi superiore e inferiore: gradient soft per passare a/dal teal */
+.studio::before,
+.studio::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 80px;
+  pointer-events: none;
+}
+.studio::before {
+  top: -1px;
+  background: linear-gradient(to bottom, var(--bg-deep), transparent);
+  opacity: 0.5;
+}
+.studio::after {
+  bottom: -1px;
+  background: linear-gradient(to top, var(--bg-deep), transparent);
+  opacity: 0.5;
+}
 
 .studio .section-head {
   margin: 0 auto 4rem;
   max-width: 760px;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
-.studio .section-head .eyebrow { justify-content: center; }
+.studio .section-head .eyebrow {
+  justify-content: center;
+  color: var(--accent-deep);
+}
+.studio .section-head .eyebrow::before,
 .studio .section-head .eyebrow::after {
   content: '';
   width: 32px;
   height: 1px;
-  background: var(--ink-soft);
+  background: var(--accent-deep);
   display: inline-block;
   flex-shrink: 0;
-  opacity: 0.6;
+  opacity: 0.5;
 }
 .studio .section-head .display {
   font-size: clamp(2.2rem, 5vw, 3.6rem);
@@ -3590,6 +3621,10 @@ img.img--lighten {
   line-height: 1.05;
   font-weight: 700;
   margin: 0 auto;
+  color: var(--bg-deep);
+}
+.studio .section-head__sub {
+  color: rgba(27, 55, 65, 0.7);
 }
 
 .studio__gallery {
@@ -3646,11 +3681,11 @@ img.img--lighten {
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--ink);
-  background: rgba(20, 30, 35, 0.72);
+  background: rgba(27, 55, 65, 0.85);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 999px;
-  border: 1px solid rgba(246, 243, 236, 0.1);
+  border: 1px solid rgba(246, 243, 236, 0.12);
 }
 
 .studio__facts {
@@ -3665,20 +3700,19 @@ img.img--lighten {
 
 .studio__facts li {
   padding: 2rem 1.5rem;
-  background: var(--glass);
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  border: 1px solid rgba(246, 243, 236, 0.08);
+  background: rgba(27, 55, 65, 0.04);
+  border: 1px solid rgba(27, 55, 65, 0.12);
   border-radius: 8px;
-  box-shadow: var(--shadow-1), var(--shadow-inset);
-  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease);
+  box-shadow: 0 4px 14px -6px rgba(27, 55, 65, 0.12);
+  transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
   position: relative;
   overflow: hidden;
 }
 
 .studio__facts li:hover {
   transform: translateY(-3px);
-  border-color: rgba(227, 178, 31, 0.25);
+  border-color: rgba(181, 137, 26, 0.4);
+  box-shadow: 0 8px 22px -8px rgba(27, 55, 65, 0.2);
 }
 
 .studio__fact-num {
@@ -3686,10 +3720,10 @@ img.img--lighten {
   font-family: var(--font);
   font-size: 0.65rem;
   letter-spacing: 0.22em;
-  color: var(--accent);
+  color: var(--accent-deep);
   text-transform: uppercase;
   margin-bottom: 1.25rem;
-  opacity: 0.85;
+  opacity: 0.9;
 }
 
 .studio__facts h3 {
@@ -3697,14 +3731,14 @@ img.img--lighten {
   font-size: 1rem;
   font-weight: 600;
   letter-spacing: -0.005em;
-  color: var(--ink);
+  color: var(--bg-deep);
   margin: 0 0 0.5rem;
   line-height: 1.25;
 }
 
 .studio__facts p {
   font-size: 0.85rem;
-  color: var(--ink-2);
+  color: rgba(27, 55, 65, 0.7);
   line-height: 1.55;
   margin: 0;
 }
