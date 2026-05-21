@@ -732,37 +732,6 @@ if (!prefersReducedMotion) {
   }
 }
 
-// ===== Scroll-velocity tilt on artist-row media (subtle film-like sway) =====
-if (!prefersReducedMotion) {
-  const medias = $$('.artist-row__media');
-  if (medias.length > 0) {
-    let lastY = window.scrollY;
-    let velocity = 0;
-    let raf;
-
-    const decay = () => {
-      velocity *= 0.9;
-      medias.forEach(m => {
-        if (m.matches(':hover')) return;
-        const skew = Math.max(-2.5, Math.min(2.5, velocity * 0.05));
-        m.style.transform = `translateY(0) skewY(${skew}deg)`;
-      });
-      if (Math.abs(velocity) > 0.1) raf = requestAnimationFrame(decay);
-      else {
-        medias.forEach(m => { if (!m.matches(':hover')) m.style.transform = ''; });
-      }
-    };
-
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY;
-      velocity = (y - lastY);
-      lastY = y;
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(decay);
-    }, { passive: true });
-  }
-}
-
 // ===== Directional reveal on artist-row content =====
 if ('IntersectionObserver' in window) {
   const rowParts = $$('.artist-row .artist-row__main, .artist-row .works');
