@@ -2685,7 +2685,40 @@ img.img--lighten {
   padding: 7rem 0 3rem;
 }
 
-.opere .section-head { margin-bottom: 4rem; }
+.opere .section-head {
+  margin: 0 auto 5rem;
+  max-width: 820px;
+  text-align: center;
+}
+
+.opere .section-head .eyebrow {
+  justify-content: center;
+}
+
+.opere .section-head .eyebrow::after {
+  content: '';
+  width: 32px;
+  height: 1px;
+  background: var(--ink-soft);
+  display: inline-block;
+  flex-shrink: 0;
+  opacity: 0.6;
+}
+
+.opere .section-head .display {
+  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  max-width: none;
+  margin: 0 auto;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.opere .section-head__sub {
+  margin: 1.6rem auto 0;
+  font-size: 1.1rem;
+  max-width: 620px;
+}
 
 .artist-row {
   padding: 6rem 0 5rem;
