@@ -1,0 +1,23 @@
+node_modules/
+.vercel
+.DS_Store
+Thumbs.db
+*.log
+
+# Build/dev artifacts
+.cache/
+dist/
+.env
+.env.local
+.env.*.local
+
+# Editor
+.vscode/
+.idea/
+*.swp
+
+# Python utility scripts (not part of the live site)
+*.pyc
+__pycache__/
+
+.vercel

@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Lo Scarabocchio Tattoo Studio — Arcore (MB). Tatuaggi custom disegnati a mano: Botanical, Realistic, Traditional, Illustrative. Quattro tatuatori, dieci anni di studio." />
+  <meta name="theme-color" content="#335D69" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Lo Scarabocchio — Tattoo Studio · Arcore" />
+  <meta property="og:description" content="Quattro tatuatori, sotto lo stesso tetto. Disegniamo a mano, da zero, partendo da te." />
+  <meta property="og:image" content="https://picsum.photos/seed/loscarabocchio-og/1200/630" />
+  <meta property="og:locale" content="it_IT" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Lo Scarabocchio — Tattoo Studio · Arcore" />
+  <meta name="twitter:description" content="Tatuaggi disegnati a mano. Quattro tatuatori, un solo studio ad Arcore." />
+  <meta name="twitter:image" content="https://picsum.photos/seed/loscarabocchio-og/1200/630" />
+
+  <link rel="icon" type="image/png" href="images/logo.png" />
+
+  <title>Lo Scarabocchio — Tattoo Studio · Arcore</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "TattooParlor",
+    "name": "Lo Scarabocchio Tattoo Studio",
+    "description": "Tattoo studio ad Arcore (MB). Quattro artisti, tatuaggi custom: Botanical, Realistic, Traditional, Illustrative.",
+    "image": "https://picsum.photos/seed/loscarabocchio-og/1200/630",
+    "url": "https://loscarabocchio.it",
+    "telephone": "+39 000 000 0000",
+    "email": "info@loscarabocchio.it",
+    "priceRange": "€€",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Esempio 1",
+      "addressLocality": "Arcore",
+      "addressRegion": "MB",
+      "postalCode": "20862",
+      "addressCountry": "IT"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 45.6275,
+      "longitude": 9.3275
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Tuesday","Wednesday","Thursday","Friday","Saturday"],
+      "opens": "10:00",
+      "closes": "19:00"
+    }],
+    "sameAs": [
+      "https://instagram.com/loscarabocchio_tattoo",
+      "https://facebook.com/loscarabocchio"
+    ],
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5.0",
+      "reviewCount": "127"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <a href="#main" class="skip-link">Salta al contenuto</a>
+
+  <!-- Custom cursor (desktop only) -->
+  <div class="cursor-dot" id="cursorDot" aria-hidden="true"></div>
+  <div class="cursor-ring" id="cursorRing" aria-hidden="true"></div>
+
+  <!-- Scroll progress bar -->
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+
+  <!-- Page transition overlay -->
+  <div class="page-transition" id="pageTransition" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a href="#hero" class="nav__logo">
+        <img class="nav__logo-img" src="images/logo.png" alt="" />
+        <span>Lo Scarabocchio</span>
+      </a>
+      <nav class="nav__links">
+        <a href="#opere">Artisti</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#faq">FAQ</a>
+        <a href="#contatti">Contatti</a>
+      </nav>
+      <div class="lang-switch" role="group" aria-label="Lingua">
+        <button data-lang="it" class="is-active">IT</button>
+        <button data-lang="en">EN</button>
+      </div>
+      <a href="#contatti" class="nav__cta">Fissa una Consulenza</a>
+      <button class="nav__burger" id="burger" aria-label="Menu">
+        <span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <!-- Aurora ambient blobs -->
+    <div class="hero__aurora" aria-hidden="true">
+      <span class="hero__aurora-blob hero__aurora-blob--1"></span>
+      <span class="hero__aurora-blob hero__aurora-blob--2"></span>
+      <span class="hero__aurora-blob hero__aurora-blob--3"></span>
+    </div>
+
+    <!-- Vertical sidetext (editorial) -->
+    <div class="hero__side" aria-hidden="true">@loscarabocchio_tattoo · Reel ◢ live</div>
+
+    <div class="container hero__grid">
+      <div class="hero__copy">
+        <div class="hero__logo" aria-hidden="true">
+          <img src="images/logo.png" alt="" />
+        </div>
+
+        <h1 class="hero__wordmark" aria-label="Lo Scarabocchio Tattoo Studio">
+          <img src="images/wordmark.png" alt="Lo Scarabocchio Tattoo Studio" />
+        </h1>
+
+        <p class="hero__lead">
+          Serietà millimetrica sul tatuaggio e delirio collettivo in tutto il resto.
+          <br/><br/>
+          Per creare pezzi unici serve la giusta concentrazione, ma per sopravvivere alla giornata serve un pizzico di leggerezza.
+        </p>
+
+        <div class="hero__cta">
+          <a href="#opere" class="btn btn--solid hero__cta-btn">Conosci gli artisti <span>→</span></a>
+          <a href="#contatti" class="btn btn--outline hero__cta-btn">Fissa una Consulenza <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="hero__phone-wrap">
+        <article class="hero-card" id="heroCard" aria-label="Reel dello studio">
+          <div class="hero-card__media" id="heroCardMedia">
+            <img class="hero-card__fallback" src="https://picsum.photos/seed/hero-card-fallback/440/780" alt="Reel dello studio" width="440" height="780" loading="eager" fetchpriority="high" />
+          </div>
+        </article>
+      </div>
+    </div>
+
+    <!-- Scroll cue at bottom -->
+    <a href="#opere" class="hero__scroll-cue" aria-label="Scorri">
+      <span class="hero__scroll-cue-line"></span>
+      <span class="hero__scroll-cue-label">Scroll</span>
+    </a>
+  </section>
+
+  <!-- OPERE — sezione per ogni artista -->
+  <section class="opere has-folio" id="opere" data-folio="PAG. 05 · OPERE">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Gli artisti</p>
+        <h2 class="display">Quattro firme. Un solo studio.</h2>
+        <p class="section-head__sub">Stili distinti, stesso metodo. Scegli chi senti più vicino alla tua idea — al resto pensiamo noi.</p>
+      </div>
+    </div>
+
+    <!-- ARTIST 01 — FRANCESCA -->
+    <article class="artist-row">
+      <div class="container">
+<div class="artist-row__main">
+          <a href="artisti/francesca.html" class="artist-row__media" data-letter="F">
+            <img src="images/francesca.jpg" alt="Francesca" loading="lazy" />
+          </a>
+          <div class="artist-row__info">
+            <h3 class="artist-row__name">Francesca</h3>
+            <p class="artist-row__bio">Botanica precisa e fine line a singolo ago. Studia il soggetto per settimane prima di disegnarlo. Lavoro lento, segno gentile, tenuta nel tempo.</p>
+            <a href="artisti/francesca.html" class="btn btn--outline artist-row__cta">Scopri Francesca <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="works">
+          <div class="works__wrap">
+            <button class="works__nav works__nav--prev" aria-label="Precedente">←</button>
+            <div class="works__grid">
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/francesca-w1/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Wild Botanica</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/francesca-w2/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Lily Linework</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/francesca-w3/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2024</span><span class="work__title">Moth Study</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/francesca-w4/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2026</span><span class="work__title">Forearm Branch</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/francesca-w5/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Dotwork Moon</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/francesca-w6/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2024</span><span class="work__title">Herbarium</span></figcaption></figure>
+            </div>
+            <button class="works__nav works__nav--next" aria-label="Successivo">→</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ARTIST 02 — MICHELA -->
+    <article class="artist-row artist-row--reverse">
+      <div class="container">
+<div class="artist-row__main">
+          <a href="artisti/michela.html" class="artist-row__media" data-letter="M">
+            <img src="images/michela.jpg" alt="Michela" loading="lazy" />
+          </a>
+          <div class="artist-row__info">
+            <h3 class="artist-row__name">Michela</h3>
+            <p class="artist-row__bio">Ritratti e animali iperrealistici in black &amp; grey. Sfumature lente, contrasto controllato. Le sue opere si guardano due volte: la prima per capirle, la seconda per crederci.</p>
+            <a href="artisti/michela.html" class="btn btn--outline artist-row__cta">Scopri Michela <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="works">
+          <div class="works__wrap">
+            <button class="works__nav works__nav--prev" aria-label="Precedente">←</button>
+            <div class="works__grid">
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/michela-w1/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Wolf Eyes</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/michela-w2/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Portrait Study</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/michela-w3/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2024</span><span class="work__title">Vintage Rose</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/michela-w4/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Hand &amp; Light</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/michela-w5/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2026</span><span class="work__title">Chiaroscuro</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/michela-w6/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2024</span><span class="work__title">Memento</span></figcaption></figure>
+            </div>
+            <button class="works__nav works__nav--next" aria-label="Successivo">→</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ARTIST 03 — GIORGIO -->
+    <article class="artist-row">
+      <div class="container">
+<div class="artist-row__main">
+          <a href="artisti/giorgio.html" class="artist-row__media" data-letter="G">
+            <img src="images/giorgio.jpg" alt="Giorgio" loading="lazy" />
+          </a>
+          <div class="artist-row__info">
+            <h3 class="artist-row__name">Giorgio</h3>
+            <p class="artist-row__bio">Old school italiano, neo-tradizionale, lettering. Linee nette, colori saturi, soggetti che si leggono dall'altra parte della stanza. Pensati per invecchiare bene.</p>
+            <a href="artisti/giorgio.html" class="btn btn--outline artist-row__cta">Scopri Giorgio <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="works">
+          <div class="works__wrap">
+            <button class="works__nav works__nav--prev" aria-label="Precedente">←</button>
+            <div class="works__grid">
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/giorgio-w1/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2024</span><span class="work__title">Eagle Heart</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/giorgio-w2/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Roses Classic</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/giorgio-w3/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Anchor &amp; Sea</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/giorgio-w4/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2026</span><span class="work__title">Sailor Letter</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/giorgio-w5/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Black Panther</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/giorgio-w6/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2024</span><span class="work__title">Old Script</span></figcaption></figure>
+            </div>
+            <button class="works__nav works__nav--next" aria-label="Successivo">→</button>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ARTIST 04 — MICKY -->
+    <article class="artist-row artist-row--reverse">
+      <div class="container">
+<div class="artist-row__main">
+          <a href="artisti/micky.html" class="artist-row__media" data-letter="M">
+            <img class="img--lighten" src="images/micky.jpg" alt="Micky" loading="lazy" />
+          </a>
+          <div class="artist-row__info">
+            <h3 class="artist-row__name">Micky</h3>
+            <p class="artist-row__bio">Illustrazione a colori, anime, pop culture. Pensa il tatuaggio come un manifesto: uno sguardo, e racconta tutta la storia. Per chi cerca qualcosa fuori dagli schemi.</p>
+            <a href="artisti/micky.html" class="btn btn--outline artist-row__cta">Scopri Micky <span>→</span></a>
+          </div>
+        </div>
+
+        <div class="works">
+          <div class="works__wrap">
+            <button class="works__nav works__nav--prev" aria-label="Precedente">←</button>
+            <div class="works__grid">
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/micky-w1/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Pop Character</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/micky-w2/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2024</span><span class="work__title">Cartoon Tiger</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/micky-w3/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Anime Eye</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/micky-w4/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2026</span><span class="work__title">Color Burst</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/micky-w5/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2025</span><span class="work__title">Story Frame</span></figcaption></figure>
+              <figure class="work"><div class="work__media"><img src="https://picsum.photos/seed/micky-w6/500/625" alt="" loading="lazy" /></div><figcaption><span class="work__year">2024</span><span class="work__title">Sticker Style</span></figcaption></figure>
+            </div>
+            <button class="works__nav works__nav--next" aria-label="Successivo">→</button>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- GALLERY — selezione mosaic -->
+  <section class="gallery has-folio" id="gallery" data-folio="PAG. 06 · GALLERY">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Gallery</p>
+        <h2 class="display">Una selezione, scelta a mano.</h2>
+        <p class="section-head__sub">Lavori recenti dai nostri quattro tatuatori. Click su ogni opera per vederla a tutto schermo.</p>
+      </div>
+
+      <div class="gallery__grid" id="galleryGrid">
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/francesca-w1/800/600" alt="Wild Botanica — Francesca" loading="lazy" />
+          <figcaption><span class="work__year">2025</span> <span class="work__title">Wild Botanica · Francesca</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/michela-w2/800/600" alt="Portrait Study — Michela" loading="lazy" />
+          <figcaption><span class="work__year">2025</span> <span class="work__title">Portrait Study · Michela</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/giorgio-w3/800/600" alt="Anchor & Sea — Giorgio" loading="lazy" />
+          <figcaption><span class="work__year">2025</span> <span class="work__title">Anchor &amp; Sea · Giorgio</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/micky-w4/800/600" alt="Color Burst — Micky" loading="lazy" />
+          <figcaption><span class="work__year">2026</span> <span class="work__title">Color Burst · Micky</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/francesca-w4/800/600" alt="Forearm Branch — Francesca" loading="lazy" />
+          <figcaption><span class="work__year">2026</span> <span class="work__title">Forearm Branch · Francesca</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/michela-w5/800/600" alt="Chiaroscuro — Michela" loading="lazy" />
+          <figcaption><span class="work__year">2026</span> <span class="work__title">Chiaroscuro · Michela</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/giorgio-w5/800/600" alt="Black Panther — Giorgio" loading="lazy" />
+          <figcaption><span class="work__year">2025</span> <span class="work__title">Black Panther · Giorgio</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/francesca-w2/800/600" alt="Lily Linework — Francesca" loading="lazy" />
+          <figcaption><span class="work__year">2025</span> <span class="work__title">Lily Linework · Francesca</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/micky-w1/800/600" alt="Pop Character — Micky" loading="lazy" />
+          <figcaption><span class="work__year">2025</span> <span class="work__title">Pop Character · Micky</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/giorgio-w1/800/600" alt="Eagle Heart — Giorgio" loading="lazy" />
+          <figcaption><span class="work__year">2024</span> <span class="work__title">Eagle Heart · Giorgio</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/michela-w4/800/600" alt="Hand & Light — Michela" loading="lazy" />
+          <figcaption><span class="work__year">2025</span> <span class="work__title">Hand &amp; Light · Michela</span></figcaption>
+        </figure>
+        <figure class="gallery__item">
+          <img src="https://picsum.photos/seed/micky-w2/800/600" alt="Cartoon Tiger — Micky" loading="lazy" />
+          <figcaption><span class="work__year">2024</span> <span class="work__title">Cartoon Tiger · Micky</span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- BIG MOMENT — typography breath -->
+  <section class="big-moment" aria-hidden="true">
+    <div class="container">
+      <p class="big-moment__quote">
+        <span class="big-moment__line">«Un buon tatuaggio</span>
+        <span class="big-moment__line big-moment__line--accent">non si nota subito.</span>
+        <span class="big-moment__line">Si capisce dopo,</span>
+        <span class="big-moment__line big-moment__line--accent">e per sempre.»</span>
+      </p>
+      <p class="big-moment__sign">— Una cosa che ci ripetiamo</p>
+    </div>
+  </section>
+
+  <!-- RECENSIONI — placeholder per recensioni Google reali -->
+  <section class="reviews">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Cosa dicono di noi</p>
+        <h2 class="display">127 persone, una stessa stella.</h2>
+        <p class="section-head__sub">Recensioni vere, lette tutte. Le trovi pubblicate su Google, dove puoi anche lasciarne una tu.</p>
+      </div>
+
+      <div class="reviews__cta">
+        <a href="https://www.google.com/maps?q=lo+scarabocchio+arcore" target="_blank" rel="noopener" class="btn btn--outline">
+          Leggile su Google <span>↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section class="processo">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">Come funziona</p>
+        <h2 class="display">Dal primo messaggio alla pelle.</h2>
+      </div>
+
+      <ol class="steps">
+        <li>
+          <span class="steps__bignum" aria-hidden="true">01</span>
+          <span class="steps__num">01</span>
+          <h3>Scrivici</h3>
+          <p>Mandaci la tua idea, qualche riferimento, e dove la vuoi. Ti rispondiamo entro 48 ore con il prossimo passo.</p>
+        </li>
+        <li>
+          <span class="steps__bignum" aria-hidden="true">02</span>
+          <span class="steps__num">02</span>
+          <h3>Consulenza</h3>
+          <p>Un incontro in studio o una call. Definiamo soggetto, dimensione, tempi e preventivo. Sempre gratuita.</p>
+        </li>
+        <li>
+          <span class="steps__bignum" aria-hidden="true">03</span>
+          <span class="steps__num">03</span>
+          <h3>Bozzetto</h3>
+          <p>L'artista disegna a mano, su misura. Lo rivediamo insieme finché non è esattamente quello che cerchi.</p>
+        </li>
+        <li>
+          <span class="steps__bignum" aria-hidden="true">04</span>
+          <span class="steps__num">04</span>
+          <h3>Il giorno</h3>
+          <p>Spazio sterilizzato, tempo solo per te. A fine seduta ti spieghiamo l'aftercare passo passo.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-head">
+        <p class="eyebrow">FAQ</p>
+        <h2 class="display">Le domande che ci fanno spesso.</h2>
+      </div>
+
+      <div class="faq__list">
+        <details class="faq__item" open>
+          <summary>Come funziona la prenotazione?</summary>
+          <div class="faq__answer">
+            <p>Mandaci la tua idea via form, email o WhatsApp con riferimenti, dimensione indicativa e zona del corpo. Ti rispondiamo entro 48 ore proponendoti una consulenza gratuita con l'artista più adatto.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Quanto dura una sessione?</summary>
+          <div class="faq__answer">
+            <p>Mediamente da 1 a 5 ore. Per progetti più ampi pianifichiamo più sessioni distanziate da almeno 2 settimane, per dare tempo alla pelle di rigenerarsi.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Come funziona il bozzetto?</summary>
+          <div class="faq__answer">
+            <p>Dopo la consulenza, l'artista prepara un bozzetto custom su misura della tua idea. Potrai chiedere fino a due revisioni. Il giorno della seduta arriviamo con il disegno definitivo, applicato e finalizzato sulla pelle prima di iniziare.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Quanto fa male?</summary>
+          <div class="faq__answer">
+            <p>Dipende dalla zona. Il dolore è soggettivo: zone più sensibili (costole, sterno, interno braccia) sono più impegnative. Ci prendiamo le pause che ti servono e usiamo creme topiche se richiesto.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Aftercare: come prendermene cura?</summary>
+          <div class="faq__answer">
+            <p>Ti consegniamo una scheda dettagliata. In sintesi: lavare con sapone neutro 2 volte al giorno per i primi 7-10 giorni, applicare crema rigenerante, niente sole diretto, niente piscina/mare per 3 settimane.</p>
+            <p>Restiamo a disposizione per qualunque dubbio nelle settimane successive.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Posso modificare un tatuaggio già fatto altrove?</summary>
+          <div class="faq__answer">
+            <p>Sì, lavoriamo sia su cover-up che su rework. Mandaci una foto dell'attuale tatuaggio e ti diciamo cosa è possibile fare.</p>
+          </div>
+        </details>
+        <details class="faq__item">
+          <summary>Accettate carte e bonifici?</summary>
+          <div class="faq__answer">
+            <p>Accettiamo contanti, bancomat, carte di credito e bonifico. L'acconto si paga al momento della prenotazione, il saldo a fine seduta.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTATTI -->
+  <section class="contatti has-folio" id="contatti" data-folio="PAG. 08 · CONTATTI">
+    <div class="container">
+      <div class="contatti__grid">
+        <div class="contatti__left">
+          <p class="eyebrow">Contatti</p>
+          <h2 class="display">Lo studio è qui. Tu, quando inizi?</h2>
+
+          <dl class="contatti__list">
+            <div><dt>Indirizzo</dt><dd>Arcore (MB) — Italia</dd></div>
+            <div><dt>Email</dt><dd><a href="mailto:info@loscarabocchio.it">info@loscarabocchio.it</a></dd></div>
+            <div><dt>Telefono</dt><dd><a href="tel:+390000000000">+39 000 000 0000</a></dd></div>
+            <div><dt>Orari</dt><dd>Mar–Sab · 10:00 – 19:00<br/>Dom &amp; Lun su appuntamento</dd></div>
+          </dl>
+
+          <div class="contatti__social">
+            <a href="#"><span>Instagram</span><span>↗</span></a>
+            <a href="#"><span>Facebook</span><span>↗</span></a>
+            <a href="#"><span>TikTok</span><span>↗</span></a>
+          </div>
+
+          <div class="contatti__map">
+            <iframe
+              src="https://www.openstreetmap.org/export/embed.html?bbox=9.314%2C45.617%2C9.342%2C45.638&amp;layer=mapnik&amp;marker=45.6275%2C9.3275"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title="Mappa Lo Scarabocchio · Arcore"></iframe>
+          </div>
+        </div>
+
+        <form class="contatti__form" id="bookingForm">
+          <h3>Raccontaci la tua idea</h3>
+          <p class="contatti__form-sub">Risposta entro 48 ore. Consulenza sempre gratuita.</p>
+
+          <label>
+            <span>Nome</span>
+            <input type="text" name="nome" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input type="email" name="email" required />
+          </label>
+          <label>
+            <span>Artista preferito</span>
+            <select name="artista">
+              <option value="">Nessuna preferenza</option>
+              <option>Francesca · Botanical &amp; Fine Line</option>
+              <option>Michela · Realistic</option>
+              <option>Giorgio · Traditional</option>
+              <option>Micky · Illustrative</option>
+            </select>
+          </label>
+          <label>
+            <span>Raccontaci la tua idea</span>
+            <textarea name="messaggio" rows="4" required placeholder="Soggetto, dimensione, zona del corpo…"></textarea>
+          </label>
+
+          <label class="form__privacy">
+            <input type="checkbox" name="privacy" required />
+            <span>Ho letto la <a href="#" target="_blank">privacy policy</a> e acconsento al trattamento dei miei dati personali per essere ricontattato.</span>
+          </label>
+
+          <button type="submit" class="btn btn--solid btn--full">Invia richiesta <span>→</span></button>
+
+          <div class="form__success" id="formSuccess" aria-live="polite">
+            <div class="form__success-tick">
+              <svg viewBox="0 0 24 24"><polyline points="4 12 10 18 20 6"></polyline></svg>
+            </div>
+            <div class="form__success-msg">
+              <h4>Grazie!</h4>
+              <p>Abbiamo ricevuto la tua richiesta.<br/>Ti scriviamo entro 48 ore.</p>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer__top">
+        <div class="footer__newsletter">
+          <p class="eyebrow">Newsletter</p>
+          <h3 class="footer__news-title">Le nuove disponibilità, prima di tutti.</h3>
+          <p class="footer__news-sub">Apriamo il calendario poche volte all'anno. Iscriviti per saperlo prima — niente spam, solo le date che contano.</p>
+          <form class="footer__news-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓ Iscritto'; this.querySelector('input').value='';">
+            <input type="email" name="email" placeholder="la-tua@email.com" required aria-label="Email" />
+            <button type="submit" class="btn btn--solid">Iscriviti <span>→</span></button>
+          </form>
+        </div>
+
+        <div class="footer__artists">
+          <p class="eyebrow">Artisti</p>
+          <div class="footer__artist-list">
+            <a href="artisti/francesca.html" class="footer__artist">
+              <span class="footer__artist-avatar"><img src="images/francesca.jpg" alt="" loading="lazy" /></span>
+              <span class="footer__artist-name">Francesca</span>
+            </a>
+            <a href="artisti/michela.html" class="footer__artist">
+              <span class="footer__artist-avatar"><img src="images/michela.jpg" alt="" loading="lazy" /></span>
+              <span class="footer__artist-name">Michela</span>
+            </a>
+            <a href="artisti/giorgio.html" class="footer__artist">
+              <span class="footer__artist-avatar"><img src="images/giorgio.jpg" alt="" loading="lazy" /></span>
+              <span class="footer__artist-name">Giorgio</span>
+            </a>
+            <a href="artisti/micky.html" class="footer__artist">
+              <span class="footer__artist-avatar"><img class="img--lighten" src="images/micky.jpg" alt="" loading="lazy" /></span>
+              <span class="footer__artist-name">Micky</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <p class="footer__brand">Lo Scarabocchio</p>
+
+      <div class="footer__cols">
+        <div>
+          <p class="footer__label">Studio</p>
+          <p>Arcore (MB), Italia<br/><a href="mailto:info@loscarabocchio.it">info@loscarabocchio.it</a><br/><a href="tel:+390000000000">+39 000 000 0000</a></p>
+        </div>
+        <div>
+          <p class="footer__label">Social</p>
+          <p><a href="#">Instagram</a> · <a href="#">Facebook</a><br/><a href="#">TikTok</a></p>
+        </div>
+        <div>
+          <p class="footer__label">Legale</p>
+          <p><a href="#">Privacy</a> · <a href="#">Cookie</a><br/>P.IVA 00000000000</p>
+        </div>
+      </div>
+      <p class="footer__copy">© <span id="year"></span> Lo Scarabocchio Tattoo Studio · Made with care in Arcore</p>
+    </div>
+  </footer>
+
+  </main>
+
+  <!-- Cookie banner -->
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Informativa cookie">
+    <p class="cookie-banner__text">
+      Usiamo solo cookie tecnici essenziali. Per dettagli leggi la <a href="#">privacy policy</a>.
+    </p>
+    <button class="cookie-banner__btn" id="cookieAccept">Ho capito</button>
+  </div>
+
+  <!-- WhatsApp Floating Button -->
+  <a href="https://wa.me/390000000000?text=Ciao%2C%20vorrei%20info%20su%20un%20tatuaggio" target="_blank" rel="noopener" class="wa-float" id="waFloat" aria-label="Contattaci su WhatsApp">
+    <span class="wa-float__teaser" aria-hidden="true">Stai pensando a un tatuaggio? Scrivici qui ✦</span>
+    <span class="wa-float__icon">
+      <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><path d="M16.001 5.333c-5.892 0-10.667 4.775-10.667 10.667 0 1.881.494 3.696 1.43 5.295L5.333 26.667l5.487-1.435a10.61 10.61 0 0 0 5.181 1.347h.004c5.891 0 10.667-4.775 10.667-10.667S21.892 5.333 16.001 5.333zm6.245 15.243c-.265.745-1.535 1.41-2.114 1.484-.567.077-1.282.108-2.066-.13-.473-.151-1.085-.353-1.866-.692-3.279-1.418-5.421-4.733-5.586-4.953-.166-.219-1.346-1.793-1.346-3.42 0-1.628.853-2.426 1.158-2.755.305-.331.665-.413.886-.413.221 0 .443.002.636.011.205.01.479-.078.748.572.276.665.937 2.298 1.018 2.464.082.166.137.358.027.578-.108.218-.165.354-.32.55-.165.196-.346.435-.491.585-.166.165-.338.342-.146.671.193.331.86 1.418 1.847 2.298 1.27 1.131 2.341 1.483 2.673 1.65.331.165.524.137.717-.083.193-.221.827-.965 1.05-1.296.221-.331.443-.275.748-.165.305.111 1.937.913 2.268 1.078.331.166.553.247.633.385.083.137.083.793-.183 1.539z"/></svg>
+    </span>
+    <span class="wa-float__label">WhatsApp</span>
+  </a>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <button class="lightbox__close" aria-label="Chiudi">×</button>
+    <button class="lightbox__nav lightbox__nav--prev" aria-label="Precedente">←</button>
+    <div class="lightbox__inner">
+      <div class="lightbox__image"><img src="" alt="" /></div>
+      <div class="lightbox__caption">
+        <span class="lightbox__title"></span>
+        <span class="lightbox__meta"></span>
+      </div>
+    </div>
+    <button class="lightbox__nav lightbox__nav--next" aria-label="Successivo">→</button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
