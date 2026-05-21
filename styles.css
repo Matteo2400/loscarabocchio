@@ -120,7 +120,7 @@ h1, h2, h3, h4, .hero__title, .display, .artist-row__name, .artist-page__name { 
   width: 8px;
   height: 8px;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--ink);
   mix-blend-mode: difference;
   display: none;
   opacity: 0;
@@ -2749,8 +2749,7 @@ img.img--lighten {
 
 .opere .section-head .eyebrow {
   justify-content: center;
-  color: var(--accent);
-  opacity: 0.9;
+  color: var(--ink-soft);
 }
 
 .opere .section-head .eyebrow::before,
@@ -2758,7 +2757,7 @@ img.img--lighten {
   content: '';
   width: 40px;
   height: 1px;
-  background: var(--accent);
+  background: var(--ink-soft);
   display: inline-block;
   flex-shrink: 0;
   opacity: 0.45;
