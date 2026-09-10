@@ -103,7 +103,7 @@ if (isDesktop && !prefersReducedMotion) {
 
 // ===== 3D parallax tilt on glass cards (extends artist-card to value, work, review, steps) =====
 if (isDesktop && !prefersReducedMotion) {
-  document.querySelectorAll('.value, .review, .steps li').forEach(card => {
+  document.querySelectorAll('.value').forEach(card => {
     let raf;
     card.addEventListener('mousemove', (e) => {
       cancelAnimationFrame(raf);
