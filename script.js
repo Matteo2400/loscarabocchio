@@ -53,7 +53,7 @@ if (cursorDot && isDesktop && !prefersReducedMotion) {
   });
 
   // Subtle grow on interactive elements
-  const interactives = 'a, button, .work, .archive__item, .artist-card, summary, .lightbox__close, .lightbox__nav, .works__nav, .archive__nav, .filmstrip__gate, .hero-card';
+  const interactives = 'a, button, .work, .artist-card, summary, .lightbox__close, .lightbox__nav, .works__nav, .hero-card';
   document.querySelectorAll(interactives).forEach(el => {
     el.addEventListener('mouseenter', () => cursorDot.classList.add('is-hover'));
     el.addEventListener('mouseleave', () => cursorDot.classList.remove('is-hover'));
@@ -80,30 +80,9 @@ if (isDesktop && !prefersReducedMotion) {
   });
 }
 
-// ===== Kinetic hero title (letters drift with mouse) =====
-if (isDesktop && !prefersReducedMotion) {
-  const heroTitleWords = $$('.hero__title .word');
-  if (heroTitleWords.length > 0) {
-    setTimeout(() => {
-      let raf;
-      document.addEventListener('mousemove', (e) => {
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          const x = (e.clientX / window.innerWidth - 0.5) * 8;
-          const y = (e.clientY / window.innerHeight - 0.5) * 4;
-          heroTitleWords.forEach((word, i) => {
-            const intensity = (i + 1) * 0.4;
-            word.style.transform = `translate(${x * intensity}px, ${y * intensity}px)`;
-          });
-        });
-      });
-    }, 1500); // wait for hero title stagger animation to complete
-  }
-}
-
 // ===== Image reveal on scroll (fade + scale) =====
-$$('img:not(.cursor-dot):not(.cursor-ring)').forEach(img => {
-  if (img.closest('.phone__reel-stack, .filmstrip, .hero-card, .footer__artist-avatar')) return;
+$$('img:not(.cursor-dot)').forEach(img => {
+  if (img.closest('.hero-card, .footer__artist-avatar')) return;
   img.classList.add('img-reveal');
 });
 
@@ -237,94 +216,6 @@ $$('.works').forEach(works => {
   grid.addEventListener('scroll', () => requestAnimationFrame(loop), { passive: true });
 });
 
-// ===== Archive — infinite carousel + multi-filter =====
-const archive = $('#archive');
-const archiveWrap = archive?.closest('.archive-wrap');
-
-if (archive && archiveWrap) {
-  [...archive.children].forEach(item => {
-    const clone = item.cloneNode(true);
-    clone.dataset.clone = 'true';
-    archive.appendChild(clone);
-  });
-
-  const allItems = () => [...archive.children];
-
-  const scrollByCard = (dir) => {
-    const card = archive.querySelector('.archive__item:not(.is-hidden)');
-    if (!card) return;
-    const gap = parseFloat(getComputedStyle(archive).columnGap || '16');
-    const step = card.offsetWidth + gap;
-    archive.scrollBy({ left: dir === 'next' ? step : -step, behavior: 'smooth' });
-  };
-
-  archiveWrap.querySelector('.archive__nav--prev')?.addEventListener('click', () => scrollByCard('prev'));
-  archiveWrap.querySelector('.archive__nav--next')?.addEventListener('click', () => scrollByCard('next'));
-
-  const loop = () => {
-    const half = archive.scrollWidth / 2;
-    if (archive.scrollLeft >= half) {
-      archive.style.scrollBehavior = 'auto';
-      archive.scrollLeft -= half;
-      archive.style.scrollBehavior = 'smooth';
-    } else if (archive.scrollLeft <= 0) {
-      archive.style.scrollBehavior = 'auto';
-      archive.scrollLeft = half;
-      archive.style.scrollBehavior = 'smooth';
-    }
-  };
-  archive.addEventListener('scroll', () => requestAnimationFrame(loop), { passive: true });
-
-  // Multi-filter: artist + style + zone (with live count + empty state)
-  const activeFilters = { artist: 'all', style: 'all', zone: 'all' };
-  const countEl = $('#filtersCount');
-  const emptyEl = $('#archiveEmpty');
-
-  const applyFilters = () => {
-    let visibleOriginals = 0;
-    allItems().forEach(item => {
-      const matchArtist = activeFilters.artist === 'all' || item.dataset.artist === activeFilters.artist;
-      const matchStyle  = activeFilters.style  === 'all' || (item.dataset.style || '').includes(activeFilters.style);
-      const matchZone   = activeFilters.zone   === 'all' || item.dataset.zone === activeFilters.zone;
-      const visible = matchArtist && matchStyle && matchZone;
-      item.classList.toggle('is-hidden', !visible);
-      if (visible && !item.dataset.clone) visibleOriginals++;
-    });
-
-    if (countEl) {
-      countEl.textContent = visibleOriginals === 1 ? '1 opera' : `${visibleOriginals} opere`;
-    }
-    if (emptyEl) {
-      emptyEl.hidden = visibleOriginals > 0;
-      archiveWrap.style.display = visibleOriginals > 0 ? '' : 'none';
-    }
-  };
-
-  $$('.filter[data-filter-type]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const type = btn.dataset.filterType;
-      const value = btn.dataset.filter;
-      activeFilters[type] = value;
-      $$(`[data-filter-type="${type}"]`).forEach(f => f.classList.remove('is-active'));
-      btn.classList.add('is-active');
-      applyFilters();
-      archive.style.scrollBehavior = 'auto';
-      archive.scrollLeft = 0;
-      archive.style.scrollBehavior = 'smooth';
-    });
-  });
-
-  $('#archiveReset')?.addEventListener('click', () => {
-    activeFilters.artist = activeFilters.style = activeFilters.zone = 'all';
-    $$('.filter[data-filter-type]').forEach(f => {
-      f.classList.toggle('is-active', f.dataset.filter === 'all');
-    });
-    applyFilters();
-  });
-
-  applyFilters();
-}
-
 // ===== Lightbox =====
 const lightbox = $('#lightbox');
 if (lightbox) {
@@ -398,19 +289,6 @@ if (lightbox) {
     });
   });
 
-  if (archive) {
-    const items = $$('.archive__item', archive);
-    items.forEach(item => {
-      item.tabIndex = 0;
-      item.setAttribute('role', 'button');
-      const open = () => openLightbox(item, items);
-      item.addEventListener('click', open);
-      item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); }
-      });
-    });
-  }
-
   // Bind: gallery (masonry, single combined gallery)
   const galleryGrid = $('#galleryGrid');
   if (galleryGrid) {
@@ -449,7 +327,7 @@ if (transition) {
 
 // ===== Reveal on scroll =====
 const revealTargets = $$(
-  '.big-moment__quote, .big-moment__sign, .section-head, .studio__gallery, .studio__facts, .artisti__cards, .review, .reviews__cta, .faq__list, .archive-wrap, .filters-group, .steps, .contatti__list, .contatti__form, .contatti__map, .footer__brand, .artist-page__head, .artist-page__main, .works, .artist-row__main, .gallery__grid, .gallery__item'
+  '.big-moment__quote, .big-moment__sign, .section-head, .studio__gallery, .studio__facts, .artisti__cards, .review, .reviews__cta, .faq__list, .steps, .contatti__list, .contatti__form, .contatti__map, .footer__brand, .artist-page__head, .artist-page__main, .works, .artist-row__main, .gallery__grid, .gallery__item'
 );
 revealTargets.forEach(el => {
   el.classList.add('reveal');
@@ -470,87 +348,6 @@ revealTargets.forEach(el => io.observe(el));
 
 // ===== Hero title word stagger =====
 // Already handled via CSS @keyframes triggered by the .word spans
-
-// ===== Filmstrip — single gate, cycles through /reels/ videos =====
-const filmstripGate = $('#filmstripGate');
-if (filmstripGate) {
-  const isInSubfolder = window.location.pathname.includes('/artisti/');
-  const REELS_PATH = isInSubfolder ? '../reels/' : 'reels/';
-  const MAX_REELS = 12;
-  const exts = ['mp4', 'webm', 'mov'];
-
-  const tryProbe = (idx) => new Promise((resolve) => {
-    const padded = String(idx).padStart(2, '0');
-    let extIdx = 0;
-    let resolved = false;
-    const tryNext = () => {
-      if (resolved) return;
-      if (extIdx >= exts.length) { resolve(null); return; }
-      const url = `${REELS_PATH}reel-${padded}.${exts[extIdx]}`;
-      extIdx++;
-      const v = document.createElement('video');
-      v.muted = true;
-      v.playsInline = true;
-      v.preload = 'metadata';
-      v.addEventListener('loadedmetadata', () => { if (!resolved) { resolved = true; resolve(url); } });
-      v.addEventListener('error', () => { if (!resolved) tryNext(); });
-      v.src = url;
-    };
-    tryNext();
-  });
-
-  (async () => {
-    const found = [];
-    for (let i = 1; i <= MAX_REELS; i++) {
-      const src = await tryProbe(i);
-      if (src) found.push(src);
-    }
-
-    if (found.length === 0) {
-      // Fallback: static image inside the gate
-      const img = document.createElement('img');
-      img.src = 'https://picsum.photos/seed/filmstrip-gate/440/640';
-      img.alt = '';
-      img.loading = 'lazy';
-      filmstripGate.appendChild(img);
-      return;
-    }
-
-    // Single video element that cycles through all found reels
-    const video = document.createElement('video');
-    video.muted = true;
-    video.playsInline = true;
-    video.preload = 'auto';
-    filmstripGate.appendChild(video);
-
-    let currentIdx = 0;
-
-    const playAt = (idx) => {
-      currentIdx = idx % found.length;
-      video.src = found[currentIdx];
-      const p = video.play();
-      if (p && typeof p.catch === 'function') p.catch(() => {});
-    };
-
-    video.addEventListener('ended', () => playAt(currentIdx + 1));
-
-    playAt(0);
-
-    // Unlock autoplay on first user interaction (Safari/iOS)
-    const tryPlay = () => { const p = video.play(); if (p && typeof p.catch === 'function') p.catch(() => {}); };
-    window.addEventListener('scroll', tryPlay, { once: true, passive: true });
-    window.addEventListener('click', tryPlay, { once: true });
-
-    // Pause when off-screen
-    if ('IntersectionObserver' in window) {
-      const obs = new IntersectionObserver(([entry]) => {
-        if (entry.isIntersecting) tryPlay();
-        else video.pause();
-      }, { threshold: 0.05 });
-      obs.observe(filmstripGate.closest('.filmstrip'));
-    }
-  })();
-}
 
 // ===== Hero Card microinteractions: parallax 3D =====
 const heroCard = $('#heroCard');
@@ -653,27 +450,6 @@ if (heroCardMedia) {
   })();
 }
 
-// ===== Scroll storytelling — manifesto words activate as you scroll =====
-const storyManifesto = $('#storyManifesto');
-if (storyManifesto && !prefersReducedMotion) {
-  const words = $$('.word', storyManifesto);
-  const story = storyManifesto.closest('.story');
-
-  const updateStory = () => {
-    if (!story) return;
-    const rect = story.getBoundingClientRect();
-    const vh = window.innerHeight;
-    const progress = Math.max(0, Math.min(1, (vh - rect.top) / (vh + rect.height)));
-    const activeCount = Math.floor(progress * (words.length + 1));
-    words.forEach((w, i) => {
-      w.classList.toggle('is-active', i < activeCount);
-    });
-  };
-
-  window.addEventListener('scroll', () => requestAnimationFrame(updateStory), { passive: true });
-  updateStory();
-}
-
 // ===== 3D parallax on artist cards =====
 if (!prefersReducedMotion && window.matchMedia('(pointer: fine)').matches) {
   $$('.artist-card').forEach(card => {
@@ -715,6 +491,21 @@ if (waFloat) {
   window.addEventListener('scroll', scrollChecker, { passive: true });
 }
 
+// ===== Newsletter footer =====
+const newsForm = $('#newsForm');
+if (newsForm) {
+  newsForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const status = $('#newsStatus');
+    const input = newsForm.querySelector('input');
+    const btn = newsForm.querySelector('button');
+    if (btn) btn.textContent = '✓ Iscritto';
+    if (status) status.textContent = 'Iscrizione registrata. Ti scriviamo quando apriamo il calendario.';
+    if (input) input.value = '';
+    newsForm.classList.add('is-done');
+  });
+}
+
 // ===== Cookie banner =====
 const cookieBanner = $('#cookieBanner');
 if (cookieBanner) {
@@ -728,15 +519,33 @@ if (cookieBanner) {
   });
 }
 
-// ===== Form submit success animation =====
+// ===== Form richiesta -> WhatsApp =====
+// Sito statico senza backend: invece di fingere un invio, il form compone
+// un messaggio precompilato e lo passa a WhatsApp, che e' il canale reale.
+const WA_NUMBER = '390000000000';   // TODO: sostituire col numero reale
 const bookingForm = $('#bookingForm');
 if (bookingForm) {
   bookingForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    const f = bookingForm;
+    const val = (name) => (f.elements[name] && f.elements[name].value || '').trim();
+    const righe = [
+      'Ciao, vorrei prenotare una consulenza.',
+      '',
+      `Nome: ${val('nome')}`,
+      `Email: ${val('email')}`,
+      `Artista: ${val('artista') || 'nessuna preferenza'}`,
+      '',
+      'La mia idea:',
+      val('messaggio'),
+    ];
+    const url = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(righe.join(String.fromCharCode(10)))}`;
+    window.open(url, '_blank', 'noopener');
+
     const successEl = $('#formSuccess');
     if (successEl) {
       successEl.classList.add('is-visible');
-      setTimeout(() => bookingForm.reset(), 1000);
+      setTimeout(() => f.reset(), 1000);
     }
   });
 }
@@ -755,54 +564,4 @@ if ('IntersectionObserver' in window) {
     }, { threshold: 0.05, rootMargin: '0px 0px 12% 0px' });
     rowParts.forEach(el => obs.observe(el));
   }
-}
-
-// ===== Language switch (basic IT/EN) =====
-const langSwitch = $('.lang-switch');
-if (langSwitch) {
-  const i18n = {
-    en: {
-      'Studio': 'Studio',
-      'Artisti': 'Artists',
-      'Opere': 'Works',
-      'Archivio': 'Archive',
-      'FAQ': 'FAQ',
-      'Contatti': 'Contact',
-      'Prenota': 'Book',
-      'Conosci gli artisti': 'Meet the artists',
-      'Tatuaggi': 'Tattoos',
-    },
-    it: {} // identity (default)
-  };
-
-  const applyLang = (lang) => {
-    document.documentElement.lang = lang;
-    langSwitch.querySelectorAll('button').forEach(b => {
-      b.classList.toggle('is-active', b.dataset.lang === lang);
-    });
-    // Apply mapping (best-effort, only for explicit items)
-    const dict = i18n[lang] || {};
-    document.querySelectorAll('[data-i18n-original]').forEach(el => {
-      const orig = el.dataset.i18nOriginal;
-      el.textContent = dict[orig] || orig;
-    });
-    document.querySelectorAll('a, button, h1, h2, h3, h4, p, span').forEach(el => {
-      if (el.children.length > 0 || !el.textContent.trim()) return;
-      const original = el.dataset.i18nOriginal || el.textContent.trim();
-      if (dict[original]) {
-        if (!el.dataset.i18nOriginal) el.dataset.i18nOriginal = original;
-        el.textContent = dict[original];
-      } else if (lang === 'it' && el.dataset.i18nOriginal) {
-        el.textContent = el.dataset.i18nOriginal;
-      }
-    });
-    localStorage.setItem('lang', lang);
-  };
-
-  langSwitch.querySelectorAll('button').forEach(btn => {
-    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
-  });
-
-  const saved = localStorage.getItem('lang');
-  if (saved && saved !== 'it') applyLang(saved);
 }

@@ -695,10 +695,16 @@
             <div><dt>Orari</dt><dd>Mar–Sab · 10:00 – 19:00<br/>Dom &amp; Lun su appuntamento</dd></div>
           </dl>
 
+          <a href="https://wa.me/390000000000?text=Ciao%2C%20vorrei%20prenotare%20una%20consulenza%20per%20un%20tatuaggio." target="_blank" rel="noopener" class="btn btn--solid contatti__wa">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16.001 5.333c-5.892 0-10.667 4.775-10.667 10.667 0 1.881.494 3.696 1.43 5.295L5.333 26.667l5.487-1.435a10.61 10.61 0 0 0 5.181 1.347h.004c5.891 0 10.667-4.775 10.667-10.667S21.892 5.333 16.001 5.333zm6.245 15.243c-.265.745-1.535 1.41-2.114 1.484-.567.077-1.282.108-2.066-.13-.473-.151-1.085-.353-1.866-.692-3.279-1.418-5.421-4.733-5.586-4.953-.166-.219-1.346-1.793-1.346-3.42 0-1.628.853-2.426 1.158-2.755.305-.331.665-.413.886-.413.221 0 .443.002.636.011.205.01.479-.078.748.572.276.665.937 2.298 1.018 2.464.082.166.137.358.027.578-.108.218-.165.354-.32.55-.165.196-.346.435-.491.585-.166.165-.338.342-.146.671.193.331.86 1.418 1.847 2.298 1.27 1.131 2.341 1.483 2.673 1.65.331.165.524.137.717-.083.193-.221.827-.965 1.05-1.296.221-.331.443-.275.748-.165.305.111 1.937.913 2.268 1.078.331.166.553.247.633.385.083.137.083.793-.183 1.539z"/></svg>
+            Scrivici su WhatsApp <span>→</span>
+          </a>
+
           <div class="contatti__social">
-            <a href="#"><span>Instagram</span><span>↗</span></a>
-            <a href="#"><span>Facebook</span><span>↗</span></a>
-            <a href="#"><span>TikTok</span><span>↗</span></a>
+            <a href="https://instagram.com/loscarabocchio_tattoo" target="_blank" rel="noopener" aria-label="Instagram Lo Scarabocchio"><span>Instagram</span><span>↗</span></a>
+            <a href="https://facebook.com/loscarabocchio" target="_blank" rel="noopener" aria-label="Facebook Lo Scarabocchio"><span>Facebook</span><span>↗</span></a>
+            <!-- TODO: sostituire con l'URL TikTok reale prima del go-live -->
+            <a href="#" aria-label="TikTok Lo Scarabocchio"><span>TikTok</span><span>↗</span></a>
           </div>
 
           <div class="contatti__map">
@@ -716,11 +722,11 @@
 
           <label>
             <span>Nome</span>
-            <input type="text" name="nome" required />
+            <input type="text" name="nome" autocomplete="name" required />
           </label>
           <label>
             <span>Email</span>
-            <input type="email" name="email" required />
+            <input type="email" name="email" autocomplete="email" required />
           </label>
           <label>
             <span>Artista preferito</span>
@@ -742,7 +748,7 @@
             <span>Ho letto la <a href="#" target="_blank">privacy policy</a> e acconsento al trattamento dei miei dati personali per essere ricontattato.</span>
           </label>
 
-          <button type="submit" class="btn btn--solid btn--full">Invia richiesta <span>→</span></button>
+          <button type="submit" class="btn btn--outline btn--full">Invia richiesta <span>→</span></button>
 
           <div class="form__success" id="formSuccess" aria-live="polite">
             <div class="form__success-tick">
@@ -766,10 +772,11 @@
           <p class="eyebrow">Newsletter</p>
           <h3 class="footer__news-title">Le nuove disponibilità, prima di tutti.</h3>
           <p class="footer__news-sub">Apriamo il calendario poche volte all'anno. Iscriviti per saperlo prima — niente spam, solo le date che contano.</p>
-          <form class="footer__news-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='✓ Iscritto'; this.querySelector('input').value='';">
+          <form class="footer__news-form" id="newsForm">
             <input type="email" name="email" placeholder="la-tua@email.com" required aria-label="Email" />
             <button type="submit" class="btn btn--solid">Iscriviti <span>→</span></button>
           </form>
+          <p class="footer__news-status" id="newsStatus" role="status" aria-live="polite"></p>
         </div>
 
         <div class="footer__artists">
@@ -795,16 +802,16 @@
         </div>
       </div>
 
-      <p class="footer__brand">Lo Scarabocchio</p>
+      <p class="footer__brand"><img src="images/wordmark.png" alt="Lo Scarabocchio" loading="lazy" /></p>
 
       <div class="footer__cols">
         <div>
           <p class="footer__label">Studio</p>
-          <p>Arcore (MB), Italia<br/><a href="mailto:info@loscarabocchio.it">info@loscarabocchio.it</a><br/><a href="tel:+390000000000">+39 000 000 0000</a></p>
+          <p>Arcore (MB), Italia<br/>Mar–Sab · 10:00 – 19:00</p>
         </div>
         <div>
           <p class="footer__label">Social</p>
-          <p><a href="#">Instagram</a> · <a href="#">Facebook</a><br/><a href="#">TikTok</a></p>
+          <p><a href="https://instagram.com/loscarabocchio_tattoo" target="_blank" rel="noopener">Instagram</a> · <a href="https://facebook.com/loscarabocchio" target="_blank" rel="noopener">Facebook</a><br/><!-- TODO: URL TikTok reale --><a href="#">TikTok</a></p>
         </div>
         <div>
           <p class="footer__label">Legale</p>

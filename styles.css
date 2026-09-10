@@ -1942,6 +1942,8 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
   display: flex;
   gap: 1rem;
   overflow-x: auto;
+  scroll-snap-type: x proximity;
+  scroll-padding-left: 4px;
   overflow-y: hidden;
   -webkit-overflow-scrolling: touch;
   scroll-behavior: smooth;
@@ -1988,6 +1990,7 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 
 .work {
   position: relative;
+  scroll-snap-align: start;
   display: flex;
   flex-direction: column;
   flex: 0 0 300px;
@@ -2395,6 +2398,15 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 
 .contatti__list a:hover { text-decoration: underline; text-underline-offset: 4px; }
 
+.contatti__wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.75rem;
+}
+
+.contatti__wa svg { width: 18px; height: 18px; fill: currentColor; flex-shrink: 0; }
+
 .contatti__social {
   display: flex;
   gap: 0.75rem;
@@ -2469,12 +2481,12 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
   font-family: var(--font);
   font-size: 0.95rem;
   color: var(--ink);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.10);
   transition: box-shadow 0.3s, background 0.3s;
 }
 
 .contatti__form input::placeholder,
-.contatti__form textarea::placeholder { color: var(--ink-mute); }
+.contatti__form textarea::placeholder { color: #b9b3a0; }
 
 .contatti__form input:focus,
 .contatti__form select:focus,
@@ -2504,7 +2516,11 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 
 /* ============== FOOTER ============== */
 
-.footer { padding: 5rem 0 2rem; }
+.footer {
+  padding: 5rem 0 2rem;
+  background: var(--bg-deep);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
 
 .footer__top {
   display: grid;
@@ -2555,7 +2571,7 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
   transition: box-shadow 0.3s, background 0.3s;
 }
 
-.footer__news-form input::placeholder { color: var(--ink-mute); }
+.footer__news-form input::placeholder { color: #b9b3a0; }
 
 .footer__news-form input:focus {
   outline: none;
@@ -2625,12 +2641,15 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 }
 
 .footer__brand {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  font-weight: 600;
-  letter-spacing: -0.025em;
-  line-height: 1;
   margin-bottom: 3rem;
-  color: var(--ink);
+}
+
+.footer__brand img {
+  width: 100%;
+  max-width: 360px;
+  height: auto;
+  display: block;
+  opacity: 0.9;
 }
 
 .footer__cols {
@@ -2673,10 +2692,17 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 }
 .footer__cols a:hover { color: var(--accent-soft); }
 
+.footer__news-status {
+  margin-top: 0.75rem;
+  font-size: 0.82rem;
+  color: var(--accent-soft);
+  min-height: 1.2em;
+}
+
 .footer__copy {
   padding-top: 2rem;
   font-size: 0.75rem;
-  color: var(--ink-mute);
+  color: var(--ink-2);
 }
 
 @media (max-width: 700px) {
@@ -3913,7 +3939,17 @@ img.img--lighten {
   width: 100%;
   height: 100%;
   border: 0;
-  filter: invert(0.92) hue-rotate(180deg) saturate(0.4) brightness(0.95);
+  filter: invert(0.9) hue-rotate(165deg) saturate(0.55) brightness(0.92) contrast(0.95);
+}
+
+/* Velo brand sulla mappa: era l'unico elemento senza calore cromatico */
+.contatti__map::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(27, 55, 65, 0.28);
+  mix-blend-mode: multiply;
+  pointer-events: none;
 }
 
 /* ============== WHATSAPP FLOATING BUTTON ============== */
