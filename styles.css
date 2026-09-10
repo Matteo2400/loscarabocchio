@@ -2054,28 +2054,15 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 .work__media[data-tone="ill5"]  { background: linear-gradient(180deg, #1c1c1c, #141414); }
 .work__media[data-tone="ill6"]  { background: linear-gradient(135deg, #181818, #121212); }
 
-.work figcaption {
-  position: absolute;
-  top: 0.6rem;
-  left: 0.6rem;
-  z-index: 4;
-  pointer-events: none;
-}
-
-/* Il titolo resta nel lightbox: sulla griglia basta l'anno */
-.work figcaption .work__title { display: none; }
+/* Nessuna didascalia sulle card dei caroselli: anno e titolo restano nel
+   DOM perche' il lightbox li legge, ma non si vedono sulla griglia. */
+.work figcaption { display: none; }
 
 .work__year {
-  display: inline-block;
-  padding: 0.24rem 0.55rem;
-  font-size: 0.62rem;
+  font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: var(--track-wide);
-  color: var(--ink);
-  background: rgba(20, 30, 35, 0.68);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  border-radius: 999px;
+  letter-spacing: 0.12em;
+  color: var(--ink-soft);
   flex-shrink: 0;
 }
 
