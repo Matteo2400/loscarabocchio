@@ -2509,124 +2509,6 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
   border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-.footer__top {
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 4rem;
-  padding-bottom: 4rem;
-  margin-bottom: 4rem;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
-}
-
-/* Newsletter */
-.footer__news-title {
-  font-size: clamp(1.5rem, 2.5vw, 2.1rem);
-  font-weight: 600;
-  letter-spacing: -0.02em;
-  line-height: 1.2;
-  margin-bottom: 0.85rem;
-  color: var(--ink);
-  max-width: 480px;
-}
-
-.footer__news-sub {
-  font-size: 0.95rem;
-  color: var(--ink-soft);
-  margin-bottom: 1.75rem;
-  max-width: 460px;
-}
-
-.footer__news-form {
-  display: flex;
-  gap: 0.5rem;
-  max-width: 480px;
-  align-items: stretch;
-}
-
-.footer__news-form input {
-  flex: 1;
-  padding: 0.85rem 1.1rem;
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 0;
-  border-radius: 999px;
-  font-family: var(--font);
-  font-size: 0.95rem;
-  color: var(--ink);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.06), var(--shadow-1);
-  transition: box-shadow 0.3s, background 0.3s;
-}
-
-.footer__news-form input::placeholder { color: #b9b3a0; }
-
-.footer__news-form input:focus {
-  outline: none;
-  background: var(--glass-hi);
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.22), var(--shadow-1);
-}
-
-.footer__news-form button { flex-shrink: 0; }
-
-/* Artists in footer */
-.footer__artists { padding-left: 1rem; }
-
-.footer__artist-list {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  margin-top: 1rem;
-}
-
-.footer__artist {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.85rem;
-  padding: 0.55rem 0.85rem 0.55rem 0.5rem;
-  width: max-content;
-  background: var(--glass);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border-radius: 999px;
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--ink);
-  box-shadow: var(--shadow-1), var(--shadow-inset);
-  transition: all 0.3s var(--ease);
-}
-
-.footer__artist:hover {
-  transform: translateX(4px);
-  background: var(--glass-hi);
-  box-shadow: var(--shadow-2), var(--shadow-inset);
-}
-
-.footer__artist-avatar {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  overflow: hidden;
-  flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-}
-
-.footer__artist-avatar img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: brightness(0.9) saturate(0.9);
-}
-
-@media (max-width: 800px) {
-  .footer__top { grid-template-columns: 1fr; gap: 2.5rem; padding-bottom: 2.5rem; margin-bottom: 2.5rem; }
-  .footer__artists { padding-left: 0; }
-}
-
-@media (max-width: 500px) {
-  .footer__news-form { flex-direction: column; }
-  .footer__news-form button { justify-content: center; }
-}
-
 .footer__brand {
   margin-bottom: 3rem;
 }
@@ -2679,13 +2561,6 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 }
 .footer__cols a:hover { color: var(--accent-soft); }
 
-.footer__news-status {
-  margin-top: 0.75rem;
-  font-size: 0.82rem;
-  color: var(--accent-soft);
-  min-height: 1.2em;
-}
-
 .footer__copy {
   padding-top: 2rem;
   font-size: 0.75rem;
@@ -2705,9 +2580,6 @@ img.img--lighten {
 
 .artist-card:hover .img--lighten,
 .artist-row__media:hover .img--lighten,
-.footer__artist:hover .img--lighten {
-  filter: brightness(1.18) contrast(0.98) saturate(1.06) !important;
-}
 
 /* ============== IMAGES IN MEDIA SLOTS ============== */
 
@@ -3583,7 +3455,6 @@ img.img--lighten {
   opacity: 0.7;
 }
 
-
 /* ============== MAP ============== */
 
 .contatti__map {
@@ -3899,24 +3770,6 @@ body { animation: pageIn 0.5s var(--ease); }
 }
 
 /* ============== NEWSLETTER FOCUS RIPPLE ============== */
-
-.footer__news-form {
-  position: relative;
-}
-
-.footer__news-form input {
-  transition: box-shadow 0.4s var(--ease),
-              background 0.4s var(--ease),
-              padding 0.4s var(--ease);
-}
-
-.footer__news-form input:focus {
-  padding-left: 1.4rem;
-  box-shadow:
-    inset 0 0 0 1px rgba(255,255,255,0.4),
-    0 0 0 4px rgba(255,255,255,0.06),
-    var(--shadow-1);
-}
 
 /* ============== FILMSTRIP GATE HOVER ============== */
 
@@ -4768,5 +4621,4 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
   from { transform: scaleX(0); opacity: 0; }
   to   { transform: scaleX(1); opacity: 0.45; }
 }
-
 

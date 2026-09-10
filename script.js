@@ -82,7 +82,7 @@ if (isDesktop && !prefersReducedMotion) {
 
 // ===== Image reveal on scroll (fade + scale) =====
 $$('img:not(.cursor-dot)').forEach(img => {
-  if (img.closest('.hero-card, .footer__artist-avatar')) return;
+  if (img.closest('.hero-card')) return;
   img.classList.add('img-reveal');
 });
 
@@ -489,21 +489,6 @@ if (waFloat) {
     }
   };
   window.addEventListener('scroll', scrollChecker, { passive: true });
-}
-
-// ===== Newsletter footer =====
-const newsForm = $('#newsForm');
-if (newsForm) {
-  newsForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const status = $('#newsStatus');
-    const input = newsForm.querySelector('input');
-    const btn = newsForm.querySelector('button');
-    if (btn) btn.textContent = '✓ Iscritto';
-    if (status) status.textContent = 'Iscrizione registrata. Ti scriviamo quando apriamo il calendario.';
-    if (input) input.value = '';
-    newsForm.classList.add('is-done');
-  });
 }
 
 // ===== Cookie banner =====
