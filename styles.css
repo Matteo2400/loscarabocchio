@@ -2600,25 +2600,25 @@ img.img--lighten {
 /* ============== OPERE — sezione per ogni artista ============== */
 
 .opere {
-  padding: 7rem 0 3rem;
+  padding: 4.5rem 0 3rem;
 }
 
 .opere .section-head {
-  margin: 0 auto 6rem;
+  margin: 0 auto 3.5rem;
   max-width: 920px;
   text-align: center;
   position: relative;
 }
 
 .section-head--featured {
-  padding-top: 1rem;
+  padding-top: 0;
 }
 
 .section-head__ornament {
   display: block;
-  margin: 0 auto 2rem;
-  width: 64px;
-  height: 64px;
+  margin: 0 auto 1.25rem;
+  width: 48px;
+  height: 48px;
   filter: drop-shadow(0 4px 24px rgba(227, 178, 31, 0.35));
   animation: ornamentFloat 6s ease-in-out infinite;
 }
@@ -2651,7 +2651,7 @@ img.img--lighten {
 }
 
 .opere .section-head .display {
-  font-size: clamp(2.8rem, 7vw, 5.6rem);
+  font-size: clamp(2.4rem, 5.5vw, 4rem);
   max-width: none;
   margin: 0 auto;
   letter-spacing: -0.04em;
@@ -2671,7 +2671,7 @@ img.img--lighten {
 }
 
 .opere .section-head__sub {
-  margin: 2rem auto 0;
+  margin: 1.25rem auto 0;
   font-size: 1.15rem;
   line-height: 1.6;
   max-width: 640px;
@@ -2683,7 +2683,7 @@ img.img--lighten {
   display: block;
   width: 60px;
   height: 1px;
-  margin: 0 auto 1.5rem;
+  margin: 0 auto 1rem;
   background: linear-gradient(to right, transparent, var(--accent), transparent);
   opacity: 0.7;
 }
@@ -2694,7 +2694,7 @@ img.img--lighten {
 }
 
 .artist-row {
-  padding: 6rem 0 5rem;
+  padding: 3.5rem 0 4rem;
   position: relative;
   isolation: isolate;
 }
