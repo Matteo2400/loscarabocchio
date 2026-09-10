@@ -772,7 +772,7 @@ if ('IntersectionObserver' in window) {
           obs.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.15, rootMargin: '0px 0px -10% 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px 12% 0px' });
     rowParts.forEach(el => obs.observe(el));
   }
 }

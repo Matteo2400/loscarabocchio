@@ -2043,6 +2043,7 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 }
 
 .work {
+  position: relative;
   display: flex;
   flex-direction: column;
   flex: 0 0 300px;
@@ -2107,14 +2108,27 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 .work__media[data-tone="ill6"]  { background: linear-gradient(135deg, #181818, #121212); }
 
 .work figcaption {
-  display: none;
+  position: absolute;
+  top: 0.6rem;
+  left: 0.6rem;
+  z-index: 4;
+  pointer-events: none;
 }
 
+/* Il titolo resta nel lightbox: sulla griglia basta l'anno */
+.work figcaption .work__title { display: none; }
+
 .work__year {
-  font-size: 0.72rem;
+  display: inline-block;
+  padding: 0.24rem 0.55rem;
+  font-size: 0.62rem;
   font-weight: 500;
-  letter-spacing: 0.12em;
-  color: var(--ink-soft);
+  letter-spacing: var(--track-wide);
+  color: var(--ink);
+  background: rgba(20, 30, 35, 0.68);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-radius: 999px;
   flex-shrink: 0;
 }
 
@@ -2720,13 +2734,13 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 
 .img--lighten,
 img.img--lighten {
-  filter: brightness(1.22) contrast(0.94) saturate(1.05) !important;
+  filter: brightness(1.1) contrast(0.96) saturate(1.03) !important;
 }
 
 .artist-card:hover .img--lighten,
 .artist-row__media:hover .img--lighten,
 .footer__artist:hover .img--lighten {
-  filter: brightness(1.32) contrast(0.96) saturate(1.1) !important;
+  filter: brightness(1.18) contrast(0.98) saturate(1.06) !important;
 }
 
 /* ============== IMAGES IN MEDIA SLOTS ============== */
@@ -2990,10 +3004,15 @@ img.img--lighten {
   margin-left: auto;
 }
 
-.artist-row--reverse .artist-row__more,
-.artist-row--reverse .artist-row__cta {
-  margin-left: auto;
+.artist-row__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
 }
+
+.artist-row--reverse .artist-row__actions { justify-content: flex-end; }
+.artist-row--reverse .artist-row__more { margin-left: auto; }
 
 .artist-row__cta {
   margin-top: 0.5rem;
@@ -3014,9 +3033,9 @@ img.img--lighten {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.5) 100%);
+  background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,0.4) 100%);
   pointer-events: none;
-  opacity: 0.85;
+  opacity: 0.7;
   transition: opacity 0.5s var(--ease);
   z-index: 2;
 }
@@ -3057,7 +3076,7 @@ img.img--lighten {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: brightness(0.82) saturate(0.9) contrast(1.05);
+  filter: brightness(0.9) saturate(0.92) contrast(1.04);
   transition: transform 0.8s var(--ease), filter 0.5s;
 }
 
@@ -3068,7 +3087,15 @@ img.img--lighten {
 
 .artist-row__info { max-width: 620px; }
 
-.artist-row__num { display: none; }
+.artist-row__num {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: var(--track-wide);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.7rem;
+}
 
 .artist-row__name {
   font-size: clamp(2.75rem, 5.5vw, 4.5rem);
@@ -3218,7 +3245,7 @@ img.img--lighten {
 .artist-row__more span { transition: transform 0.3s var(--ease); }
 .artist-row__more:hover span { transform: translateX(3px); }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
   .artist-row__main,
   .artist-row--reverse .artist-row__main {
     grid-template-columns: 1fr;
@@ -3235,9 +3262,9 @@ img.img--lighten {
     text-align: left;
     margin-left: 0;
   }
-  .artist-row--reverse .artist-row__more {
-    margin-left: 0;
-  }
+  .artist-row--reverse .artist-row__more { margin-left: 0; }
+  .artist-row--reverse .artist-row__tags,
+  .artist-row--reverse .artist-row__actions { justify-content: flex-start; }
 }
 
 /* ============== GALLERY — Masonry mosaic ============== */
@@ -4942,11 +4969,11 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 
 .artist-row .artist-row__main {
   opacity: 0;
-  transform: translateX(-40px);
-  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  transform: translateX(-24px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
 }
 .artist-row--reverse .artist-row__main {
-  transform: translateX(40px);
+  transform: translateX(24px);
 }
 .artist-row .artist-row__main.is-visible {
   opacity: 1;
@@ -4956,8 +4983,8 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
 /* Artist-row works carousel: float-in from below */
 .artist-row .works {
   opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.9s var(--ease) 0.15s, transform 0.9s var(--ease) 0.15s;
+  transform: translateY(24px);
+  transition: opacity 0.6s var(--ease) 0.08s, transform 0.6s var(--ease) 0.08s;
 }
 .artist-row .works.is-visible {
   opacity: 1;
