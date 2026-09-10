@@ -22,12 +22,13 @@
   --bg-3: #366170;         /* slightly lifted */
   --bg-deep: #1B3741;      /* deeper teal for trust/info sections */
   --ink: #f5efde;          /* warm cream off-white */
-  --ink-2: #d6ceb8;        /* AA pass on teal */
-  --ink-soft: #a8a290;     /* AA pass */
-  --ink-mute: #7a7567;     /* AA-large */
+  --ink-2: #d6ceb8;        /* 5.39:1 su --bg — AA */
+  --ink-soft: #cbc4ae;     /* 4.85:1 su --bg — AA (era #a8a290 = 3.32:1, sotto soglia) */
+  --ink-mute: #7a7567;     /* 1.84:1 — SOLO decorativo (folio, sidetext). Mai su testo leggibile */
   --accent: #E3B21F;       /* R227 G178 B31 — exact brand gold */
   --accent-soft: #efc44a;
   --accent-deep: #b5891a;
+  --accent-on-cream: #8a6612; /* 4.58:1 su cream — oro AA per la sezione Studio invertita */
 
   /* Spacing scale — section/component/element rhythm */
   --space-section: 7rem;
@@ -49,13 +50,18 @@
   --text-4xl: 3.052rem;
   --text-5xl: 3.815rem;
 
+  /* Font stacks */
+  --font-display: 'The Coastal', 'Caveat', cursive;
+  --mono: ui-monospace, 'SFMono-Regular', 'Cascadia Code', Consolas, monospace;
+
   /* Tracking */
   --track-tight: -0.02em;
   --track-base: 0;
-  --track-wide: 0.16em;
+  --track-wide: 0.16em;   /* micro-label uppercase */
+  --track-mono: 0.2em;    /* label monospace/tecniche */
 
-  /* Focus ring */
-  --focus-ring: 0 0 0 2px var(--bg), 0 0 0 4px rgba(255,255,255,0.7);
+  /* Focus ring — leggibile sia su teal che su superfici chiare */
+  --focus-ring: 0 0 0 2px var(--bg-deep), 0 0 0 4px var(--accent-soft);
 
   --glass: rgba(255, 255, 255, 0.04);
   --glass-hi: rgba(255, 255, 255, 0.10);
@@ -109,6 +115,12 @@ h1, h2, h3, h4, .hero__title, .display, .artist-row__name, .artist-page__name { 
 .artist-card:focus-visible,
 .work:focus-visible,
 .archive__item:focus-visible { box-shadow: var(--focus-ring); }
+
+/* I CTA solidi hanno fondo cream: serve un anello scuro per essere visibili */
+.btn--solid:focus-visible,
+.cookie-banner__btn:focus-visible {
+  box-shadow: 0 0 0 2px var(--ink), 0 0 0 4px var(--bg-deep);
+}
 
 /* ============== CUSTOM CURSOR (minimal dot, only on desktop) ============== */
 
@@ -352,7 +364,7 @@ h1, h2, h3 {
 }
 
 .nav.is-scrolled {
-  background: rgba(28, 28, 30, 0.7);
+  background: rgba(27, 55, 65, 0.72);   /* --bg-deep, non piu' grigio neutro */
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
   box-shadow: 0 4px 24px -8px rgba(0,0,0,0.5);
@@ -422,6 +434,10 @@ h1, h2, h3 {
 .nav__links a:hover { color: var(--ink); }
 .nav__links a:hover::after { transform: scaleX(1); }
 
+/* Sezione corrente (scrollspy) */
+.nav__links a.is-active { color: var(--ink); }
+.nav__links a.is-active::after { transform: scaleX(1); }
+
 .nav__cta {
   font-size: 0.78rem;
   font-weight: 500;
@@ -442,10 +458,18 @@ h1, h2, h3 {
   box-shadow: var(--shadow-2);
 }
 
+.nav__cta svg { width: 14px; height: 14px; fill: currentColor; flex-shrink: 0; }
+.nav__cta { display: inline-flex; align-items: center; gap: 0.45rem; }
+
 .nav__burger {
   display: none;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 5px;
+  width: 44px;           /* tap target WCAG 2.5.5 (era ~22x12px) */
+  height: 44px;
+  margin-right: -10px;   /* riallinea le linee al bordo del container */
 }
 
 .nav__burger span {
@@ -453,17 +477,30 @@ h1, h2, h3 {
   width: 22px; height: 1.5px;
   background: var(--ink);
   border-radius: 2px;
+  transition: transform 0.3s var(--ease);
 }
 
-@media (max-width: 880px) {
-  .nav__links, .nav__cta { display: none; }
+.nav__burger.is-open span:nth-child(1) { transform: translateY(3.25px) rotate(45deg); }
+.nav__burger.is-open span:nth-child(2) { transform: translateY(-3.25px) rotate(-45deg); }
+
+@media (max-width: 900px) {
+  .nav__links { display: none; }
   .nav__burger { display: flex; }
+  .nav__inner { gap: 0.75rem; }
+  /* La CTA resta visibile in barra anche su mobile: e' il canale di prenotazione
+     principale e nasconderla dietro il burger costava conversioni. */
+  .nav__cta {
+    margin-left: auto;
+    padding: 0.55rem 0.95rem;
+    font-size: 0.72rem;
+    white-space: nowrap;
+  }
   .nav__links.is-open {
     display: flex;
     position: absolute;
     top: 100%; left: var(--pad); right: var(--pad);
     flex-direction: column;
-    background: rgba(35, 35, 38, 0.92);
+    background: rgba(27, 55, 65, 0.94);   /* --bg-deep */
     backdrop-filter: blur(24px) saturate(1.4);
     -webkit-backdrop-filter: blur(24px) saturate(1.4);
     padding: 1.25rem 1.5rem;
@@ -472,6 +509,13 @@ h1, h2, h3 {
     gap: 1rem;
     margin-top: 0.5rem;
   }
+}
+
+/* Su schermi stretti la CTA si riduce alla sola icona */
+@media (max-width: 520px) {
+  .nav__cta { padding: 0.6rem; }
+  .nav__cta .nav__cta-label { display: none; }
+  .nav__cta svg { width: 18px; height: 18px; }
 }
 
 /* ============== HERO (split: copy + card) ============== */
@@ -570,7 +614,7 @@ h1, h2, h3 {
   transform-origin: left center;
   transform: translateY(-50%) rotate(-90deg) translateX(50%);
   white-space: nowrap;
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: var(--mono);
   font-size: 0.66rem;
   font-weight: 500;
   letter-spacing: 0.4em;
@@ -646,7 +690,7 @@ h1, h2, h3 {
 }
 
 .hero__scroll-cue-label {
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: var(--mono);
   font-size: 0.62rem;
   font-weight: 500;
   letter-spacing: 0.3em;
@@ -1576,7 +1620,7 @@ h1, h2, h3 {
   position: absolute;
   bottom: 1.25rem;
   right: var(--pad);
-  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-family: var(--mono);
   font-size: 0.62rem;
   font-weight: 500;
   letter-spacing: 0.2em;
@@ -2792,8 +2836,8 @@ img.img--lighten {
 }
 
 .section-head__accent {
-  font-family: var(--font);
-  font-style: italic;
+  font-family: var(--font-display);
+  font-style: normal;
   font-weight: 500;
   color: var(--accent);
   letter-spacing: -0.02em;
@@ -3309,9 +3353,10 @@ img.img--lighten {
 }
 
 .big-moment__line--accent {
-  font-style: italic;
+  font-family: var(--font-display);
+  font-style: normal;
   font-weight: 500;
-  color: var(--ink-2);
+  color: var(--ink);
 }
 
 .big-moment__sign {

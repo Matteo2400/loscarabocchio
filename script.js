@@ -10,9 +10,9 @@ $('#year') && ($('#year').textContent = new Date().getFullYear());
 
 // ===== Sticky nav =====
 const nav = $('#nav');
-window.addEventListener('scroll', () => {
+window.addEventListener('scroll', () => requestAnimationFrame(() => {
   nav?.classList.toggle('is-scrolled', window.scrollY > 30);
-});
+}), { passive: true });
 
 // ===== Scroll progress bar =====
 const scrollProgress = $('#scrollProgress');
@@ -169,10 +169,50 @@ if (counterElements.length > 0 && !prefersReducedMotion) {
 }
 
 // ===== Mobile menu =====
-$('#burger')?.addEventListener('click', () => $('.nav__links')?.classList.toggle('is-open'));
-$$('.nav__links a').forEach(a => {
-  a.addEventListener('click', () => $('.nav__links')?.classList.remove('is-open'));
-});
+const burger = $('#burger');
+const navLinks = $('.nav__links');
+if (burger && navLinks) {
+  const setMenuOpen = (open) => {
+    navLinks.classList.toggle('is-open', open);
+    burger.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    burger.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+  };
+  burger.addEventListener('click', () => setMenuOpen(!navLinks.classList.contains('is-open')));
+  $$('a', navLinks).forEach(a => a.addEventListener('click', () => setMenuOpen(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navLinks.classList.contains('is-open')) setMenuOpen(false);
+  });
+}
+
+// ===== Scrollspy: evidenzia la sezione corrente nella nav =====
+(() => {
+  const links = $$('.nav__links a[href^="#"]');
+  if (links.length === 0) return;
+  const map = links
+    .map(a => ({ a, el: document.getElementById(a.getAttribute('href').slice(1)) }))
+    .filter(x => x.el);
+  if (map.length === 0) return;
+
+  const clear = () => map.forEach(({ a }) => {
+    a.classList.remove('is-active');
+    a.removeAttribute('aria-current');
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => entry.target._visible = entry.isIntersecting);
+    // Una sola sezione attiva: la prima visibile a centro viewport.
+    // Nessun link attivo nell'hero o in sezioni senza voce di nav.
+    const hit = map.find(({ el }) => el._visible);
+    clear();
+    if (hit) {
+      hit.a.classList.add('is-active');
+      hit.a.setAttribute('aria-current', 'true');
+    }
+  }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+
+  map.forEach(({ el }) => io.observe(el));
+})();
 
 // ===== Works carousels — infinite loop =====
 $$('.works').forEach(works => {
