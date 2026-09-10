@@ -469,7 +469,7 @@ if (transition) {
 
 // ===== Reveal on scroll =====
 const revealTargets = $$(
-  '.section-head, .studio__grid, .artisti__cards, .review, .reviews__cta, .faq__list, .archive-wrap, .filters-group, .steps, .contatti__list, .contatti__form, .contatti__map, .footer__brand, .artist-page__head, .artist-page__main, .works, .artist-row__main, .gallery__grid, .gallery__item'
+  '.big-moment__quote, .big-moment__sign, .section-head, .studio__grid, .artisti__cards, .review, .reviews__cta, .faq__list, .archive-wrap, .filters-group, .steps, .contatti__list, .contatti__form, .contatti__map, .footer__brand, .artist-page__head, .artist-page__main, .works, .artist-row__main, .gallery__grid, .gallery__item'
 );
 revealTargets.forEach(el => {
   el.classList.add('reveal');
