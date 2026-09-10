@@ -861,7 +861,7 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 /* Hero logo (rose icon) — transparent PNG, centered, no shadow */
 .hero__logo {
   width: 130px;
-  margin: 0 0 1.5rem;
+  margin: 0 auto 1.5rem;
   opacity: 0;
   animation: heroFadeIn 0.9s var(--ease) 0.05s forwards;
 }
@@ -2856,8 +2856,8 @@ img.img--lighten {
 }
 
 .section-head__accent {
-  font-family: var(--font-display);
-  font-style: normal;
+  font-family: var(--font);
+  font-style: italic;
   font-weight: 500;
   color: var(--accent);
   letter-spacing: -0.02em;
