@@ -2904,25 +2904,32 @@ img.img--lighten {
   background-attachment: scroll;
 }
 
-/* Mood tints saturati: ogni sezione ha un cast cromatico distintivo */
+/* Mood tints dentro la palette brand: la differenziazione corre sull'asse
+   teal -> oro (i due soli colori del marchio), variando temperatura e
+   profondita' invece di introdurre tinte estranee. */
+
+/* Francesca — teal chiaro, il piu' fresco */
 .artist-row[data-mood="botanical"] {
   background-image:
-    linear-gradient(165deg, rgba(8, 42, 35, 0.78) 0%, rgba(6, 26, 28, 0.94) 100%),
+    linear-gradient(165deg, rgba(34, 78, 88, 0.76) 0%, rgba(20, 48, 56, 0.94) 100%),
     url('images/francesca.jpg');
 }
+/* Michela — teal profondo, il piu' scuro e neutro */
 .artist-row[data-mood="realistic"] {
   background-image:
-    linear-gradient(165deg, rgba(8, 16, 28, 0.82) 0%, rgba(4, 10, 20, 0.96) 100%),
+    linear-gradient(165deg, rgba(16, 38, 46, 0.84) 0%, rgba(9, 24, 30, 0.96) 100%),
     url('images/michela.jpg');
 }
+/* Giorgio — teal caldo, vira verso l'oro */
 .artist-row[data-mood="traditional"] {
   background-image:
-    linear-gradient(165deg, rgba(48, 28, 8, 0.78) 0%, rgba(28, 16, 6, 0.94) 100%),
+    linear-gradient(165deg, rgba(58, 50, 26, 0.78) 0%, rgba(26, 40, 44, 0.94) 100%),
     url('images/giorgio.jpg');
 }
+/* Micky — oro piu' acceso, il piu' luminoso */
 .artist-row[data-mood="color"] {
   background-image:
-    linear-gradient(165deg, rgba(42, 12, 40, 0.78) 0%, rgba(24, 8, 30, 0.94) 100%),
+    linear-gradient(165deg, rgba(74, 60, 24, 0.76) 0%, rgba(22, 44, 50, 0.94) 100%),
     url('images/micky.jpg');
 }
 
@@ -2936,10 +2943,10 @@ img.img--lighten {
   opacity: 0.5;
   mix-blend-mode: color;
 }
-.artist-row[data-mood="botanical"]::before { background: radial-gradient(ellipse at 20% 30%, rgba(40, 130, 80, 0.5), transparent 60%); }
-.artist-row[data-mood="realistic"]::before { background: radial-gradient(ellipse at 80% 30%, rgba(70, 100, 145, 0.45), transparent 60%); }
-.artist-row[data-mood="traditional"]::before { background: radial-gradient(ellipse at 20% 30%, rgba(200, 140, 40, 0.42), transparent 60%); }
-.artist-row[data-mood="color"]::before { background: radial-gradient(ellipse at 80% 30%, rgba(200, 60, 150, 0.42), transparent 60%); }
+.artist-row[data-mood="botanical"]::before   { background: radial-gradient(ellipse at 20% 30%, rgba(96, 176, 186, 0.45), transparent 60%); }
+.artist-row[data-mood="realistic"]::before   { background: radial-gradient(ellipse at 80% 30%, rgba(58, 104, 124, 0.42), transparent 60%); }
+.artist-row[data-mood="traditional"]::before { background: radial-gradient(ellipse at 20% 30%, rgba(227, 178, 31, 0.40), transparent 60%); }
+.artist-row[data-mood="color"]::before       { background: radial-gradient(ellipse at 80% 30%, rgba(239, 196, 74, 0.42), transparent 60%); }
 
 /* Vignette overlay to push focus to center */
 .artist-row > .container {
@@ -3065,16 +3072,6 @@ img.img--lighten {
 }
 
 .artist-row__info { max-width: 620px; }
-
-.artist-row__num {
-  display: block;
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: var(--track-wide);
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 0.7rem;
-}
 
 .artist-row__name {
   font-size: clamp(2.75rem, 5.5vw, 4.5rem);
