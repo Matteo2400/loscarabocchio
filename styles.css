@@ -397,7 +397,20 @@ h1, h2, h3 {
   height: 38px;
   width: auto;
   display: block;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s var(--ease), visibility 0.3s var(--ease);
 }
+
+/* Il wordmark in nav compare solo dopo lo scroll, per non duplicare
+   quello grande dell'hero al primo paint. Lo spazio resta riservato. */
+.nav.is-scrolled .nav__logo-text {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Nelle pagine interne (senza hero) il wordmark e' subito visibile */
+body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 
 @media (max-width: 600px) {
   .nav__logo-img { height: 40px; }
@@ -535,13 +548,16 @@ h1, h2, h3 {
   background-position: center;
 }
 
-/* Subtle darkening overlay — no color cast */
+/* Velo teal brand: scurisce senza spegnere il colore della palette.
+   Prima era rgba(0,0,0,.8), che riduceva il teal a un quasi-nero. */
 .hero::before {
   content: '';
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background:
+    radial-gradient(ellipse 60% 70% at 28% 45%, rgba(0, 0, 0, 0.30), transparent 70%),
+    linear-gradient(180deg, rgba(27, 55, 65, 0.62) 0%, rgba(20, 40, 48, 0.82) 100%);
   pointer-events: none;
 }
 
@@ -562,10 +578,15 @@ h1, h2, h3 {
 .hero__aurora-blob {
   position: absolute;
   border-radius: 50%;
-  filter: blur(120px);
+  filter: blur(75px);   /* era 120px: differenza visiva trascurabile, paint molto piu' leggero */
   opacity: 0.45;
   will-change: transform;
 }
+
+/* Fuori viewport le animazioni infinite dell'hero si fermano */
+.hero.is-paused .hero__aurora-blob,
+.hero.is-paused .hero__big-rotate-item,
+.hero.is-paused .hero__scroll-cue-line::after { animation-play-state: paused; }
 
 .hero__aurora-blob--1 {
   width: 580px; height: 580px;
@@ -772,7 +793,7 @@ h1, h2, h3 {
   display: grid;
   grid-template-columns: 1.15fr 1fr;
   gap: 5rem;
-  align-items: end;
+  align-items: center;
   width: 100%;
   position: relative;
   padding-top: 3rem;
@@ -796,9 +817,9 @@ h1, h2, h3 {
 }
 
 .hero__copy {
-  max-width: 640px;
-  text-align: center;
-  margin: 0 auto;
+  max-width: 560px;
+  text-align: left;
+  margin: 0;
 }
 
 .hero__meta {
@@ -840,7 +861,7 @@ h1, h2, h3 {
 /* Hero logo (rose icon) — transparent PNG, centered, no shadow */
 .hero__logo {
   width: 130px;
-  margin: 0 auto 1.5rem;
+  margin: 0 0 1.5rem;
   opacity: 0;
   animation: heroFadeIn 0.9s var(--ease) 0.05s forwards;
 }
@@ -858,7 +879,7 @@ h1, h2, h3 {
 /* Brand wordmark — image (white "Lo Scarabocchio · Tattoo Studio") */
 .hero__wordmark {
   display: block;
-  margin: 0 auto 2rem;
+  margin: 0 0 2rem;
   width: 100%;
   max-width: 560px;
   opacity: 0;
@@ -906,7 +927,7 @@ h1, h2, h3 {
   font-size: 0.85rem;
   font-weight: 500;
   letter-spacing: 0.06em;
-  color: var(--ink-soft);
+  color: var(--ink-2);
   padding: 0.5rem 0;
   text-transform: none;
   transition: color 0.3s var(--ease);
@@ -920,9 +941,10 @@ h1, h2, h3 {
   width: 100%;
   height: 1px;
   background: var(--accent);
-  transform: scaleX(0.4);
+  opacity: 0.7;
+  transform: scaleX(0.5);
   transform-origin: left;
-  transition: transform 0.4s var(--ease), background 0.3s;
+  transition: transform 0.4s var(--ease), opacity 0.3s var(--ease);
 }
 
 .hero__cta-link:hover {
@@ -930,6 +952,7 @@ h1, h2, h3 {
 }
 .hero__cta-link:hover::after {
   transform: scaleX(1);
+  opacity: 1;
 }
 
 /* === Hero stats === */
@@ -1063,6 +1086,10 @@ h1, h2, h3 {
   position: absolute;
   inset: 0;
   z-index: 1;
+  /* Superficie brand mentre i reel caricano: legge come scelta, non come placeholder */
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 15%, rgba(227, 178, 31, 0.10), transparent 70%),
+    linear-gradient(165deg, #2C5260 0%, #1B3741 100%);
 }
 
 .hero-card__media video,

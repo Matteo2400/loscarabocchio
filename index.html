@@ -25,7 +25,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 
   <!-- Schema.org structured data -->
@@ -71,7 +71,7 @@
   }
   </script>
 </head>
-<body>
+<body class="has-hero">
 
   <a href="#main" class="skip-link">Salta al contenuto</a>
 
@@ -143,8 +143,12 @@
 
       <div class="hero__phone-wrap">
         <article class="hero-card" id="heroCard" aria-label="Reel dello studio">
-          <div class="hero-card__media" id="heroCardMedia">
-            <img class="hero-card__fallback" src="images/pattern-alt.jpg" alt="" width="440" height="780" loading="eager" fetchpriority="high" />
+          <div class="hero-card__media" id="heroCardMedia"></div>
+          <div class="hero-card__foot">
+            <div>
+              <p class="hero-card__caption">Disegnato a mano, da zero</p>
+              <p class="hero-card__sub">Lo Scarabocchio · Arcore</p>
+            </div>
           </div>
         </article>
       </div>

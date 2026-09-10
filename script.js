@@ -14,6 +14,16 @@ window.addEventListener('scroll', () => requestAnimationFrame(() => {
   nav?.classList.toggle('is-scrolled', window.scrollY > 30);
 }), { passive: true });
 
+// ===== Hero: ferma le animazioni infinite quando esce dal viewport =====
+(() => {
+  const hero = document.querySelector('.hero');
+  if (!hero || !('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver(([entry]) => {
+    hero.classList.toggle('is-paused', !entry.isIntersecting);
+  }, { threshold: 0 });
+  io.observe(hero);
+})();
+
 // ===== Scroll progress bar =====
 const scrollProgress = $('#scrollProgress');
 if (scrollProgress) {
