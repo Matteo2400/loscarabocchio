@@ -2610,6 +2610,28 @@ img.img--lighten {
   position: relative;
 }
 
+/* Fascia di luce dietro la testata: entra sfumando dall'hero e si spegne
+   prima delle foto scure degli artisti, senza bordi netti.
+   Larga 100vw perche' deve uscire dal container e coprire tutta la riga. */
+.opere .section-head::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  top: -5rem;
+  bottom: -4rem;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 40% 55% at 50% 22%, rgba(227, 178, 31, 0.07), transparent 70%),
+    linear-gradient(180deg,
+      transparent 0%,
+      rgba(54, 97, 112, 0.38) 30%,
+      rgba(54, 97, 112, 0.38) 68%,
+      transparent 100%);
+}
+
 .section-head--featured {
   padding-top: 0;
 }
