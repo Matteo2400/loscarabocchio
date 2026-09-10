@@ -3149,10 +3149,12 @@ img.img--lighten {
 }
 
 .reviews .section-head {
-  margin: 0 auto 3.5rem;
+  margin: 0 auto 3rem;
   max-width: 720px;
   text-align: center;
 }
+
+.reviews .section-head .eyebrow { margin-bottom: 0.85rem; }
 .reviews .section-head .eyebrow { justify-content: center; }
 .reviews .section-head .eyebrow::after {
   content: '';
