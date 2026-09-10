@@ -3218,105 +3218,18 @@ img.img--lighten {
   margin: 0 0 1rem;
   break-inside: avoid;
   box-shadow: var(--shadow-2), var(--shadow-inset);
-  transition: transform 0.55s var(--ease), box-shadow 0.55s var(--ease);
-}
-
-.gallery__item:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-3), var(--shadow-inset);
-  z-index: 2;
 }
 
 .gallery__item img {
   width: 100%;
   height: auto;
   display: block;
-  filter: brightness(0.85) saturate(0.92) contrast(1.05);
-  transition: transform 0.7s var(--ease), filter 0.5s var(--ease);
+  filter: brightness(0.9) saturate(0.94) contrast(1.03);
 }
 
-@media (hover: hover) and (pointer: fine) {
-  .gallery__item:hover img {
-    transform: scale(1.06);
-    filter: brightness(0.96) saturate(1.05) contrast(1.05);
-  }
-}
-
-.gallery__item::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.7) 100%);
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.4s var(--ease);
-  z-index: 1;
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .gallery__item:hover::after { opacity: 1; }
-}
-
-/* Su touch la didascalia e' sempre visibile: senza hover l'attribuzione
-   all'artista non compariva mai */
-@media (hover: none), (max-width: 900px) {
-  .gallery__item::after { opacity: 1; }
-}
-
-.gallery__item figcaption {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 2;
-  padding: 1rem 1.25rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.2rem;
-  color: var(--ink);
-  pointer-events: none;
-  transform: translateY(12px);
-  opacity: 0;
-  transition: opacity 0.35s var(--ease), transform 0.5s var(--ease);
-}
-
-@media (hover: hover) and (pointer: fine) {
-  .gallery__item:hover figcaption {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (hover: none), (max-width: 900px) {
-  .gallery__item figcaption {
-    opacity: 1;
-    transform: none;
-  }
-}
-
-.gallery__item figcaption .work__year {
-  font-size: 0.66rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.7);
-}
-
-.gallery__item figcaption .work__title {
-  font-size: 0.92rem;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-  color: var(--ink);
-}
-
-/* L'artista e' il ponte verso la scelta: unico accento oro della gallery */
-.gallery__item figcaption .work__artist {
-  font-size: 0.72rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-}
+/* Nessun effetto al passaggio del mouse: le foto restano ferme.
+   La didascalia resta nel DOM solo perche' il lightbox la legge. */
+.gallery__item figcaption { display: none; }
 
 /* CTA di chiusura: la gallery e' il picco di desiderio e finiva nel vuoto */
 .gallery__cta {
@@ -3380,8 +3293,7 @@ img.img--lighten {
 }
 
 .big-moment__line--accent {
-  font-family: var(--font-display);
-  font-style: normal;
+  font-style: italic;
   font-weight: 600;
   color: var(--ink);     /* ...e la battuta prende il pieno risalto */
 }
