@@ -3026,31 +3026,6 @@ img.img--lighten {
   z-index: 2;
 }
 
-/* Big italic initial letter watermark on the photo */
-.artist-row__media::before {
-  content: attr(data-letter);
-  position: absolute;
-  bottom: -0.15em;
-  right: 0.4rem;
-  font-family: var(--font);
-  font-style: italic;
-  font-weight: 800;
-  font-size: clamp(8rem, 14vw, 13rem);
-  line-height: 0.85;
-  letter-spacing: -0.05em;
-  color: rgba(246, 243, 236, 0.16);
-  z-index: 3;
-  pointer-events: none;
-  transition: transform 0.6s var(--ease), color 0.4s var(--ease);
-  text-shadow: 0 4px 18px rgba(0,0,0,0.35);
-  user-select: none;
-}
-
-.artist-row__media:hover::before {
-  transform: translate(-8px, -8px);
-  color: rgba(246, 243, 236, 0.26);
-}
-
 .artist-row__media:hover {
   transform: translateY(-6px);
   box-shadow: var(--shadow-3), var(--shadow-inset);
