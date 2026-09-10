@@ -898,11 +898,11 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 }
 
 .hero__lead {
-  font-size: clamp(0.98rem, 1.1vw, 1.1rem);
-  line-height: 1.65;
+  font-size: clamp(1.05rem, 1.45vw, 1.3rem);
+  line-height: 1.55;
   color: var(--ink-2);
   margin-bottom: 2.25rem;
-  max-width: 540px;
+  max-width: 520px;
 }
 
 .hero__cta {
@@ -3659,7 +3659,8 @@ img.img--lighten {
 }
 .studio::before {
   top: -1px;
-  background: linear-gradient(to bottom, var(--bg-deep), transparent);
+  /* Sopra c'e' .processo su --bg, non --bg-deep: sfumare dal colore giusto */
+  background: linear-gradient(to bottom, var(--bg), transparent);
   opacity: 0.5;
 }
 .studio::after {
@@ -3677,7 +3678,7 @@ img.img--lighten {
 }
 .studio .section-head .eyebrow {
   justify-content: center;
-  color: var(--accent-deep);
+  color: var(--accent-on-cream);
 }
 .studio .section-head .eyebrow::before,
 .studio .section-head .eyebrow::after {
@@ -3715,7 +3716,7 @@ img.img--lighten {
   position: relative;
   margin: 0;
   overflow: hidden;
-  border-radius: 6px;
+  border-radius: var(--radius);
   background: rgba(0,0,0,0.2);
   box-shadow: var(--shadow-1);
   transition: transform 0.5s var(--ease);
@@ -3776,7 +3777,7 @@ img.img--lighten {
   padding: 2rem 1.5rem;
   background: rgba(27, 55, 65, 0.04);
   border: 1px solid rgba(27, 55, 65, 0.12);
-  border-radius: 8px;
+  border-radius: var(--radius);
   box-shadow: 0 4px 14px -6px rgba(27, 55, 65, 0.12);
   transition: transform 0.4s var(--ease), border-color 0.4s var(--ease), box-shadow 0.4s var(--ease);
   position: relative;
@@ -3793,11 +3794,10 @@ img.img--lighten {
   display: inline-block;
   font-family: var(--font);
   font-size: 0.65rem;
-  letter-spacing: 0.22em;
-  color: var(--accent-deep);
+  letter-spacing: var(--track-mono);
+  color: var(--accent-on-cream);   /* 4.58:1 su cream, era 2.79:1 */
   text-transform: uppercase;
   margin-bottom: 1.25rem;
-  opacity: 0.9;
 }
 
 .studio__facts h3 {
@@ -3830,7 +3830,15 @@ img.img--lighten {
   .studio__facts { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
-  .studio__gallery { height: 560px; }
+  /* Niente altezza fissa in px: le celle diventano francobolli su schermi
+     stretti e si schiacciano su quelli larghi */
+  .studio__gallery {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    gap: 0.75rem;
+  }
+  .studio__photo { aspect-ratio: 16 / 10; }
   .studio__facts { grid-template-columns: 1fr; }
 }
 
