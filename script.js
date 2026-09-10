@@ -327,11 +327,11 @@ if (transition) {
 
 // ===== Reveal on scroll =====
 const revealTargets = $$(
-  '.big-moment__quote, .big-moment__sign, .section-head, .studio__gallery, .studio__facts, .artisti__cards, .review, .reviews__cta, .faq__list, .steps, .contatti__list, .contatti__form, .contatti__map, .footer__brand, .artist-page__head, .artist-page__main, .works, .artist-row__main, .gallery__grid, .gallery__item'
+  '.big-moment__quote, .big-moment__sign, .section-head, .artisti__cards, .review, .reviews__cta, .faq__list, .steps, .contatti__list, .contatti__form, .contatti__map, .footer__brand, .artist-page__head, .artist-page__main, .works, .artist-row__main, .gallery__grid, .gallery__item'
 );
 revealTargets.forEach(el => {
   el.classList.add('reveal');
-  if (el.matches('.studio__facts, .artisti__cards, .faq__list, .steps')) {
+  if (el.matches('.artisti__cards, .faq__list, .steps')) {
     el.classList.add('reveal-stagger');
   }
 });
