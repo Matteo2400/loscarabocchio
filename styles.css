@@ -2926,7 +2926,7 @@ img.img--lighten {
 }
 .artist-row[data-mood="botanical"]::before   { background: radial-gradient(ellipse at 20% 30%, rgba(96, 176, 186, 0.45), transparent 60%); }
 .artist-row[data-mood="realistic"]::before   { background: radial-gradient(ellipse at 80% 30%, rgba(58, 104, 124, 0.42), transparent 60%); }
-.artist-row[data-mood="color"]::before       { background: radial-gradient(ellipse at 80% 30%, rgba(239, 196, 74, 0.42), transparent 60%); }
+.artist-row[data-mood="color"]::before       { background: radial-gradient(ellipse at 20% 30%, rgba(239, 196, 74, 0.42), transparent 60%); }
 
 /* Vignette overlay to push focus to center */
 .artist-row > .container {
