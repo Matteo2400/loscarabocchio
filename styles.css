@@ -1657,62 +1657,6 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 
 @media (max-width: 700px) { .has-folio::after { display: none; } }
 
-.studio { padding: 7rem 0; }
-
-.studio__head { margin-bottom: 4rem; max-width: 800px; }
-
-.studio__grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
-}
-
-.value {
-  padding: 2rem 1.5rem;
-  background: var(--glass);
-  backdrop-filter: blur(20px) saturate(1.2);
-  -webkit-backdrop-filter: blur(20px) saturate(1.2);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-1), var(--shadow-inset);
-  transition: all 0.4s var(--ease);
-}
-
-.value:hover {
-  transform: translateY(var(--lift));
-  background: var(--glass-hi);
-  box-shadow: var(--shadow-2), var(--shadow-inset);
-}
-
-.value__num {
-  display: block;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  color: var(--ink-soft);
-  margin-bottom: 1.25rem;
-}
-
-.value h3 {
-  font-size: 1rem;
-  font-weight: 600;
-  margin-bottom: 0.75rem;
-  color: var(--ink);
-}
-
-.value p {
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-  line-height: 1.65;
-}
-
-@media (max-width: 900px) {
-  .studio__grid { grid-template-columns: 1fr 1fr; }
-}
-
-@media (max-width: 500px) {
-  .studio__grid { grid-template-columns: 1fr; }
-}
-
 /* ============== ARTISTI INDEX (CARDS) ============== */
 
 .artisti { padding: 7rem 0; }
@@ -2303,7 +2247,7 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
 
 /* ============== PROCESSO ============== */
 
-.processo { padding: 7rem 0; }
+.processo { padding: 5rem 0; }
 
 .steps {
   list-style: none;
@@ -3484,7 +3428,18 @@ img.img--lighten {
 
 /* ============== TESTIMONIANZE ============== */
 
-.reviews { padding: 7rem 0; }
+.reviews {
+  padding: 7rem 0;
+  background: var(--bg-deep);
+  position: relative;
+}
+
+.reviews::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(246,243,236,0.08), transparent);
+}
 
 .reviews .section-head {
   margin: 0 auto 3.5rem;
@@ -3665,7 +3620,7 @@ img.img--lighten {
 }
 .studio::after {
   bottom: -1px;
-  background: linear-gradient(to top, var(--bg-deep), transparent);
+  background: linear-gradient(to top, var(--bg), transparent);
   opacity: 0.5;
 }
 
@@ -3845,17 +3800,9 @@ img.img--lighten {
 /* ============== FAQ ============== */
 
 .faq {
-  padding: 7rem 0;
-  background: var(--bg-deep);
+  padding: 5rem 0;
   position: relative;
 }
-.faq::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(246,243,236,0.08), transparent);
-}
-
 .faq__list {
   display: flex;
   flex-direction: column;
@@ -3868,13 +3815,17 @@ img.img--lighten {
   background: var(--glass);
   backdrop-filter: blur(20px) saturate(1.2);
   -webkit-backdrop-filter: blur(20px) saturate(1.2);
+  border: 1px solid var(--glass-edge);
   border-radius: var(--radius);
   box-shadow: var(--shadow-1), var(--shadow-inset);
   overflow: hidden;
-  transition: background 0.3s var(--ease);
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 
-.faq__item[open] { background: var(--glass-hi); }
+.faq__item[open] {
+  background: var(--glass-hi);
+  border-color: rgba(227, 178, 31, 0.20);
+}
 
 .faq__item summary {
   list-style: none;
@@ -3910,6 +3861,40 @@ img.img--lighten {
 }
 
 .faq__answer p + p { margin-top: 0.85rem; }
+
+.faq__cta {
+  max-width: 900px;
+  margin: 1.75rem auto 0;
+  text-align: center;
+  font-size: 0.95rem;
+  color: var(--ink-2);
+}
+
+.faq__answer strong { color: var(--ink); font-weight: 600; }
+
+.faq__answer ul {
+  margin: 0.7rem 0 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.faq__answer li {
+  position: relative;
+  padding-left: 1.1rem;
+  margin-bottom: 0.4rem;
+}
+
+.faq__answer li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.7;
+}
 
 
 /* ============== MAP ============== */
@@ -4169,7 +4154,8 @@ body { animation: pageIn 0.5s var(--ease); }
 /* ============== FAQ SMOOTH REVEAL ============== */
 
 .faq__item {
-  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), transform 0.3s var(--ease);
+  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease),
+              transform 0.3s var(--ease), border-color 0.4s var(--ease);
 }
 
 .faq__item:hover {
@@ -4178,21 +4164,23 @@ body { animation: pageIn 0.5s var(--ease); }
 }
 
 .faq__answer {
-  overflow: hidden;
-  max-height: 0;
+  display: grid;
+  grid-template-rows: 0fr;
   opacity: 0;
-  transform: translateY(-6px);
   padding: 0 1.75rem;
-  transition: max-height 0.5s var(--ease),
+  transition: grid-template-rows 0.5s var(--ease),
               opacity 0.4s var(--ease) 0.05s,
-              transform 0.4s var(--ease),
               padding 0.4s var(--ease);
 }
 
+.faq__answer-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
 .faq__item[open] .faq__answer {
-  max-height: 800px;
+  grid-template-rows: 1fr;
   opacity: 1;
-  transform: translateY(0);
   padding: 0 1.75rem 1.5rem;
 }
 
@@ -4250,16 +4238,11 @@ body { animation: pageIn 0.5s var(--ease); }
 
 /* ============== VALUE CARDS — 3D TILT (extends artist-card pattern) ============== */
 
-.value, .work, .review, .steps li {
+.work, .review, .steps li {
   transition: transform 0.45s var(--ease),
               background 0.4s var(--ease),
               box-shadow 0.4s var(--ease);
 }
-
-/* Solo .value conserva il tilt 3D: su .review sfocava il testo lungo,
-   su .work e .steps li era rumore. will-change permanente rimosso:
-   teneva vivo un layer di compositing per card. */
-.value { transform-style: preserve-3d; }
 
 /* ============== ARROW LINK CHAR FLIP (motion when text changes direction) ============== */
 
@@ -5089,8 +5072,4 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
   to   { transform: scaleX(1); opacity: 0.45; }
 }
 
-/* Gentle floating gold sparkle for hero ornament group (already animated) */
-@keyframes goldPulse {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50%      { opacity: 1;   transform: scale(1.15); }
-}
+

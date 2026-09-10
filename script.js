@@ -101,26 +101,6 @@ if (isDesktop && !prefersReducedMotion) {
   }
 }
 
-// ===== 3D parallax tilt on glass cards (extends artist-card to value, work, review, steps) =====
-if (isDesktop && !prefersReducedMotion) {
-  document.querySelectorAll('.value').forEach(card => {
-    let raf;
-    card.addEventListener('mousemove', (e) => {
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(() => {
-        const r = card.getBoundingClientRect();
-        const x = (e.clientX - r.left) / r.width - 0.5;
-        const y = (e.clientY - r.top) / r.height - 0.5;
-        card.style.transform = `perspective(900px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg) translateY(-5px)`;
-      });
-    });
-    card.addEventListener('mouseleave', () => {
-      cancelAnimationFrame(raf);
-      card.style.transform = '';
-    });
-  });
-}
-
 // ===== Image reveal on scroll (fade + scale) =====
 $$('img:not(.cursor-dot):not(.cursor-ring)').forEach(img => {
   if (img.closest('.phone__reel-stack, .filmstrip, .hero-card, .footer__artist-avatar')) return;
