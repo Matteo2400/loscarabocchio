@@ -556,7 +556,6 @@ body:not(.has-hero) .nav__logo-text { opacity: 1; visibility: visible; }
   inset: 0;
   z-index: 0;
   background:
-    linear-gradient(to top, var(--bg) 0, transparent 190px),
     radial-gradient(ellipse 60% 70% at 28% 45%, rgba(0, 0, 0, 0.30), transparent 70%),
     linear-gradient(180deg, rgba(27, 55, 65, 0.62) 0%, rgba(20, 40, 48, 0.82) 100%);
   pointer-events: none;
@@ -2611,27 +2610,6 @@ img.img--lighten {
   position: relative;
 }
 
-/* Fascia di luce dietro la testata: entra sfumando dall'hero e si spegne
-   prima delle foto scure degli artisti, senza bordi netti.
-   Larga 100vw perche' deve uscire dal container e coprire tutta la riga. */
-.opere .section-head::before {
-  content: '';
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100vw;
-  top: -5rem;
-  bottom: -4rem;
-  z-index: -1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse 45% 55% at 50% 20%, rgba(227, 178, 31, 0.10), transparent 70%),
-    linear-gradient(180deg,
-      transparent 0%,
-      rgba(64, 112, 128, 0.55) 34%,
-      rgba(64, 112, 128, 0.55) 66%,
-      transparent 100%);
-}
 
 .section-head--featured {
   padding-top: 0;
@@ -2724,7 +2702,7 @@ img.img--lighten {
 
 /* Each section uses one of the artist's works as bg, darkened so content stays in focus */
 .opere .artist-row:first-of-type {
-  box-shadow: inset 0 150px 90px -90px var(--bg);
+  box-shadow: inset 0 120px 70px -80px var(--bg);
 }
 
 .artist-row {
