@@ -4642,16 +4642,6 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
   .btn { font-size: 0.85rem; }
 }
 
-/* ---- Riga artista "reverse": il nome restava a destra ---- */
-@media (max-width: 900px) {
-  .artist-row--reverse .artist-row__name { text-align: left; }
-  .artist-row--reverse .artist-row__name::after {
-    left: 0; right: auto;
-    transform-origin: left;
-    background: linear-gradient(to right, var(--ink) 0%, var(--ink-soft) 60%, transparent 100%);
-  }
-}
-
 /* ---- I due CTA della riga artista andavano a capo sfalsati ---- */
 @media (max-width: 440px) {
   .artist-row__actions { flex-direction: column; align-items: stretch; }
@@ -4745,4 +4735,71 @@ body.menu-open { overflow: hidden; }
 @media (hover: none) {
   .contatti__map iframe { pointer-events: none; }
   .contatti__map.is-active iframe { pointer-events: auto; }
+}
+
+/* ============================================================
+   ALLINEAMENTO CENTRATO SU MOBILE
+   In colonna singola l'impaginazione editoriale a sinistra perde
+   senso: senza la seconda colonna il testo resta appeso al bordo.
+   ============================================================ */
+
+@media (max-width: 900px) {
+  /* Hero: il logo era centrato mentre wordmark, lead e CTA restavano
+     a sinistra. Un asse solo, al centro. */
+  .hero__grid { text-align: center; }
+  .hero__copy {
+    text-align: center;
+    max-width: none;
+    margin: 0 auto;
+  }
+  .hero__logo     { margin: 0 auto 1.5rem; }
+  .hero__wordmark { margin: 0 auto 2rem; }
+  .hero__lead     { margin-left: auto; margin-right: auto; }
+  .hero__cta      { justify-content: center; }
+  .hero__phone-wrap { display: flex; justify-content: center; }
+
+  /* Foto artista: aveva max-width 480px senza margini automatici,
+     quindi si appoggiava a sinistra lasciando il vuoto a destra
+     (226px su tablet verticale) */
+  .artist-row__media,
+  .artist-row--reverse .artist-row__media {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Il blocco testo segue la foto: stesso asse, niente scalino */
+  .artist-row__info,
+  .artist-row--reverse .artist-row__info {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .artist-row__name,
+  .artist-row--reverse .artist-row__name {
+    display: block;
+    text-align: center;
+  }
+  /* La sottolineatura del nome parte da sinistra: centrata sotto al titolo */
+  .artist-row__name::after,
+  .artist-row--reverse .artist-row__name::after {
+    left: 50%;
+    right: auto;
+    margin-left: -70px;   /* meta' dei 140px di larghezza */
+    transform-origin: center;
+    background: linear-gradient(to right, transparent, var(--ink-soft) 25%, var(--ink) 50%, var(--ink-soft) 75%, transparent);
+  }
+  .artist-row__actions,
+  .artist-row--reverse .artist-row__actions { justify-content: center; }
+
+  /* Contatti: intestazione e comandi centrati come il resto */
+  .contatti__left  { text-align: center; }
+  .contatti__left .eyebrow { justify-content: center; }
+  .contatti__social { justify-content: center; }
+  .contatti__list dt { text-align: center; }
+}
+
+/* A schermo stretto anche la lista contatti e' gia' impilata:
+   centrandola resta coerente con il blocco sopra */
+@media (max-width: 600px) {
+  .contatti__list dd { text-align: center; }
 }
