@@ -146,6 +146,8 @@ if (burger && navLinks) {
     burger.classList.toggle('is-open', open);
     burger.setAttribute('aria-expanded', String(open));
     burger.setAttribute('aria-label', open ? 'Chiudi menu' : 'Apri menu');
+    // Blocca lo scroll della pagina dietro al drawer
+    document.body.classList.toggle('menu-open', open);
   };
   burger.addEventListener('click', () => setMenuOpen(!navLinks.classList.contains('is-open')));
   $$('a', navLinks).forEach(a => a.addEventListener('click', () => setMenuOpen(false)));
@@ -491,6 +493,18 @@ if (waFloat) {
   window.addEventListener('scroll', scrollChecker, { passive: true });
 }
 
+// ===== Mappa: su touch si attiva solo al tap =====
+// Di default intercettava lo swipe e bloccava lo scroll proprio sopra il form
+(() => {
+  const map = document.querySelector('.contatti__map');
+  if (!map) return;
+  map.addEventListener('click', () => map.classList.add('is-active'));
+  // Uscendo dalla mappa torna inerte, cosi' lo scroll successivo funziona
+  document.addEventListener('click', (e) => {
+    if (!map.contains(e.target)) map.classList.remove('is-active');
+  });
+})();
+
 // ===== Cookie banner =====
 const cookieBanner = $('#cookieBanner');
 if (cookieBanner) {
@@ -498,6 +512,16 @@ if (cookieBanner) {
   if (!accepted) {
     setTimeout(() => cookieBanner.classList.add('is-visible'), 1200);
   }
+  // Finche' il banner e' aperto sposto in alto il bottone WhatsApp:
+  // erano entrambi a bottom 1.5rem e il banner lo copriva
+  const syncWaOffset = () => {
+    const open = cookieBanner.classList.contains('is-visible');
+    document.body.classList.toggle('has-cookie-banner', open);
+  };
+  new MutationObserver(syncWaOffset).observe(cookieBanner, {
+    attributes: true, attributeFilter: ['class'],
+  });
+
   $('#cookieAccept')?.addEventListener('click', () => {
     localStorage.setItem('cookieAccepted', '1');
     cookieBanner.classList.remove('is-visible');

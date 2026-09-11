@@ -4574,3 +4574,175 @@ html { scroll-behavior: smooth; scroll-padding-top: 90px; }
   to   { transform: scaleX(1); opacity: 0.45; }
 }
 
+
+/* ============================================================
+   OTTIMIZZAZIONE MOBILE
+   Blocco in coda al file: vince per ordine di cascata sulle
+   regole desktop senza doverne alzare la specificita'.
+   ============================================================ */
+
+/* ---- Tap target: minimo 44x44 (WCAG 2.5.5) ---- */
+@media (max-width: 900px) {
+  /* CTA di prenotazione: era 36.6px, ed e' l'elemento che porta prenotazioni */
+  .nav__cta { min-height: 44px; justify-content: center; }
+
+  /* Voci del drawer: erano righe da 26px impilate */
+  .nav__links.is-open a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    padding-bottom: 0;
+  }
+  /* Nel drawer la sottolineatura dello scrollspy diventava una riga piena */
+  .nav__links.is-open a::after { display: none; }
+
+  /* Email, telefono e social in contatti: link da 26px */
+  .contatti__list dd a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .contatti__social a { min-height: 44px; }
+
+  .cookie-banner__btn { min-height: 44px; }
+
+  /* Link del footer: bersagli da 24px attaccati fra loro */
+  .footer__cols a {
+    display: inline-block;
+    padding: 0.35rem 0;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(227, 178, 31, 0.45);
+  }
+}
+
+@media (max-width: 520px) {
+  .nav__cta { min-width: 44px; }
+  /* La label era display:none, quindi il link restava senza nome
+     accessibile e lo screen reader leggeva l'URL grezzo */
+  .nav__cta .nav__cta-label {
+    position: absolute;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+
+/* ---- iOS: sotto i 16px Safari zooma la pagina al focus ---- */
+@media (max-width: 900px) {
+  .contatti__form input,
+  .contatti__form select,
+  .contatti__form textarea { font-size: 16px; }
+}
+
+/* ---- CTA leggibili su mobile (erano 12.48px) ---- */
+@media (max-width: 900px) {
+  .btn { font-size: 0.85rem; }
+}
+
+/* ---- Riga artista "reverse": il nome restava a destra ---- */
+@media (max-width: 900px) {
+  .artist-row--reverse .artist-row__name { text-align: left; }
+  .artist-row--reverse .artist-row__name::after {
+    left: 0; right: auto;
+    transform-origin: left;
+    background: linear-gradient(to right, var(--ink) 0%, var(--ink-soft) 60%, transparent 100%);
+  }
+}
+
+/* ---- I due CTA della riga artista andavano a capo sfalsati ---- */
+@media (max-width: 440px) {
+  .artist-row__actions { flex-direction: column; align-items: stretch; }
+  .artist-row__actions .btn { justify-content: center; }
+}
+
+/* ---- Contatti: colonna etichetta fissa da 130px, l'email sfondava ---- */
+@media (max-width: 600px) {
+  .contatti__list > div { grid-template-columns: 1fr; gap: 0.35rem; }
+  .contatti__list dd { word-break: break-word; }
+}
+
+/* ---- Recensioni: a colonna piena le righe arrivavano a 100 caratteri ---- */
+@media (max-width: 1000px) {
+  .reviews__grid { max-width: 560px; }
+}
+
+/* ---- Densita' verticale: spaziature desktop mai ridotte su mobile ---- */
+@media (max-width: 600px) {
+  .opere { padding: 3rem 0 2rem; }
+  .opere .section-head { margin-bottom: 2.5rem; }
+  .opere .section-head::before { top: -3rem; bottom: -2.5rem; }
+  .artist-row { padding: 2.5rem 0 3rem; }
+  .gallery { padding: 4rem 0; }
+  .reviews { padding: 4rem 0; }
+  .processo { padding: 4rem 0; }
+  .faq { padding: 4rem 0; }
+  .contatti { padding: 4rem 0; }
+  .footer { padding: 3rem 0 1.5rem; }
+  .footer__brand { margin-bottom: 2rem; }
+  .footer__cols { gap: 1.5rem; padding: 2rem 0; }
+}
+
+/* ---- "Il nostro studio": a una colonna erano 4 schermate ---- */
+@media (max-width: 500px) {
+  .gallery__grid { column-count: 2; column-gap: 0.6rem; }
+  .gallery__item { margin-bottom: 0.6rem; }
+}
+
+/* ---- Lightbox: la X stava a top:-3rem, fuori schermo su mobile ---- */
+@media (max-width: 900px) {
+  .lightbox__close {
+    position: fixed;
+    top: 0.75rem;
+    right: 0.75rem;
+    width: 44px; height: 44px;
+    background: rgba(20, 30, 35, 0.75);
+    border-radius: 999px;
+    z-index: 3;
+  }
+  .lightbox__nav {
+    width: 44px; height: 44px;
+    background: rgba(20, 30, 35, 0.6);
+  }
+  .lightbox__nav--prev { left: 0.75rem; }
+  .lightbox__nav--next { right: 0.75rem; }
+}
+
+/* ---- Hover appiccicoso: su touch lo stato restava incollato dopo il tap ---- */
+@media (hover: none) {
+  .btn:hover, .nav__cta:hover, .faq__item:hover,
+  .work:hover, .artist-row__media:hover,
+  .lightbox__nav:hover, .lightbox__close:hover,
+  .contatti__social a:hover, .wa-float:hover {
+    transform: none;
+  }
+  .faq__item:hover { background: var(--glass); }
+  .faq__item[open]:hover { background: var(--glass-hi); }
+}
+
+/* ---- Performance: blur su 36 card di carosello mai visibili ---- */
+@media (max-width: 900px) {
+  .work {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}
+
+/* Bottone WhatsApp sollevato mentre il banner cookie e' aperto:
+   erano entrambi a bottom 1.5rem e il banner lo copriva */
+body.has-cookie-banner .wa-float { bottom: 7.5rem; }
+@media (max-width: 600px) {
+  body.has-cookie-banner .wa-float { bottom: 9.5rem; }
+}
+
+/* Pagina ferma mentre il drawer e' aperto */
+body.menu-open { overflow: hidden; }
+
+/* La mappa intercettava lo swipe e bloccava lo scroll appena sopra il form.
+   Su touch resta inerte finche' non la si tocca esplicitamente. */
+@media (hover: none) {
+  .contatti__map iframe { pointer-events: none; }
+  .contatti__map.is-active iframe { pointer-events: auto; }
+}
