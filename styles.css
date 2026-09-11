@@ -2610,6 +2610,19 @@ img.img--lighten {
   position: relative;
 }
 
+.opere .section-head::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw;
+  top: -4.5rem;
+  bottom: -3.5rem;
+  z-index: -1;
+  background: var(--bg-deep);
+  pointer-events: none;
+}
+
 
 .section-head--featured {
   padding-top: 0;
@@ -2701,9 +2714,6 @@ img.img--lighten {
 }
 
 /* Each section uses one of the artist's works as bg, darkened so content stays in focus */
-.opere .artist-row:first-of-type {
-  box-shadow: inset 0 120px 70px -80px var(--bg);
-}
 
 .artist-row {
   background-color: var(--bg-deep);
